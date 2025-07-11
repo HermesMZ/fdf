@@ -6,9 +6,11 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:07:09 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/11 15:53:53 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:44:57 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//matrices
 
 #include "fdf.h"
 
@@ -19,7 +21,7 @@
 void	my_mlx_pixel_put(t_my_img *img, int x, int y, int color)
 {
 	int	offset;
-
+// ne pas afficher ce qui sort de l'ecran
 	offset = (img->line_len * y) + (x * (img->bits_per_pixel / 8));
 	*((unsigned int *)(offset + img->addr)) = color;
 }
