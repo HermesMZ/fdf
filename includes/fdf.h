@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:05:08 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/11 15:11:15 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/12 00:20:41 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int			end_display(t_mlx_data *data);
 
 // map
 int			check_extract_map(t_mlx_data *data, int fd);
+void		free_map(int **tab);
+
 
 // init
 t_mlx_data	*init_data(void);

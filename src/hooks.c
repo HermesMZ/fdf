@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:59:59 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/11 15:59:35 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/12 00:22:07 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,20 @@
 
 int	end_display(t_mlx_data *data)
 {
+	free_map(data->map->array_map);
+	data->map->array_map = NULL;
+	free(data->map);
+	data->map = NULL;
 	mlx_destroy_image(data->mlx_ptr, data->img->img);
+	data->img->img = NULL;
+	free(data->img);
+	data->img = NULL;
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	data->win_ptr = NULL;
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
-	free(data->img);
-	free(data->map);
 	free(data);
-	exit(1);
+	exit(0);
 }
 
 int	handle_input(int keysym, t_mlx_data *data)

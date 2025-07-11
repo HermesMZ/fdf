@@ -1,8 +1,8 @@
 NAME = fdf
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-LIBFLAGS = -Lminilibx-linux -lmlx_Linux -lXext -lX11
-
+MLX_LIBS = -Lminilibx-linux -lmlx_Linux
+X_LIBS = -lXext -lX11
 SRCS_DIR = src
 OBJS_DIR = objs
 INCLUDES_DIR = includes
@@ -26,7 +26,7 @@ INCLUDES = -I $(INCLUDES_DIR) -I $(LIBFT_DIR)/includes -I $(LIBMLX_DIR)
 all: $(LIBFT) $(LIBMLX) $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(LIBMLX)
-	$(CC) $(CFLAGS) $(LIBFLAGS) $(OBJS) $(LIBFT) $(LIBMLX) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(LIBMLX) $(MLX_LIBS) $(X_LIBS) -o $(NAME)
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c | $(OBJS_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
