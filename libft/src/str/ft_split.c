@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: MZimeris <MZimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 23:18:25 by MZimeris          #+#    #+#             */
-/*   Updated: 2025/04/30 23:18:28 by MZimeris         ###   ########.fr       */
+/*   Updated: 2025/07/11 15:03:48 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	free_splitted(char **splitted)
+void	free_splitted(char **splitted)
 {
 	int	i;
 

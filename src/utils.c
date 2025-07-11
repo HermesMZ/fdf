@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 16:59:59 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/11 15:59:35 by mzimeris         ###   ########.fr       */
+/*   Created: 2025/07/11 14:20:24 by mzimeris          #+#    #+#             */
+/*   Updated: 2025/07/11 14:49:59 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	end_display(t_mlx_data *data)
+void	print_map(t_mlx_data *data)
 {
-	mlx_destroy_image(data->mlx_ptr, data->img->img);
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	mlx_destroy_display(data->mlx_ptr);
-	free(data->mlx_ptr);
-	free(data->img);
-	free(data->map);
-	free(data);
-	exit(1);
-}
+	int	l;
+	int	c;
 
-int	handle_input(int keysym, t_mlx_data *data)
-{
-	if (keysym == XK_Escape)
-		end_display(data);
-	ft_printf("The %d key has been pressed\n\n", keysym);
-	return (0);
+	l = 0;
+	while (l < data->map->lines)
+	{
+		c = 0;
+		while (c < data->map->columns)
+		{
+			ft_printf("%d ", data->map->array_map[l][c]);
+			c++;
+		}
+		ft_printf("\n");
+		l++;
+	}
 }

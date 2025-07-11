@@ -14,7 +14,9 @@ LIBMLX = $(LIBMLX_DIR)/libmlx_Linux.a
 SRCS = \
 	fdf.c \
 	hooks.c \
+	init.c \
 	map.c \
+	utils.c \
 
 SRCS_PATH = $(addprefix $(SRCS_DIR)/, $(SRCS))
 OBJS = $(SRCS_PATH:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)

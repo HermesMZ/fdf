@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:05:08 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/10 17:38:16 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/11 15:11:15 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,21 @@ typedef struct s_mlx_data
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	t_map		map;
-	t_my_img	img;
+	t_map		*map;
+	t_my_img	*img;
 }	t_mlx_data;
 
 // hooks
-int	handle_input(int keysym, t_mlx_data *data);
-int	end_display(t_mlx_data *data);
+int			handle_input(int keysym, t_mlx_data *data);
+int			end_display(t_mlx_data *data);
 
 // map
-int	check_extract_map(t_map *map, int fd);
+int			check_extract_map(t_mlx_data *data, int fd);
 
+// init
+t_mlx_data	*init_data(void);
+
+// utils
+void		print_map(t_mlx_data *data);
 
 #endif /*FDF_H*/

@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 14:07:41 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/10 14:05:00 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/11 15:04:28 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void		ft_putstr_fd(char *s, int fd);
 
 // str
 char		**ft_split(char const *s, char c);
+void		free_splitted(char **splitted);
 char		*ft_strchr(const char *s, int c);
 int			ft_strcmp(const char *s1, const char *s2);
 char		*ft_strdup(const char *s1);

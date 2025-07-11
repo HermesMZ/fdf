@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:09:12 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/10 19:24:11 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/11 15:20:57 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	col_count(char *line)
 	return (count);
 }
 
-void	free_tab(char **tab)
+void	free_map(int **tab)
 {
 	int	i;
 
@@ -50,7 +50,7 @@ void	free_tab(char **tab)
 	free(tab);
 }
 
-int	**create_tab(int lines, int col)
+int	**create_map(int lines, int col)
 {
 	int	**tab;
 	int	i;
@@ -59,63 +59,67 @@ int	**create_tab(int lines, int col)
 	if (!tab)
 		return (NULL);
 	i = 0;
-	tab[lines + 1] = NULL;
+	tab[lines] = NULL;
 	while (i < lines)
 	{
 		tab[i] = malloc(sizeof(int) * (col + 1));
 		if (!tab[i])
-			return (free_tab(tab), NULL);
-		ft_memset(tab[i], '\0', col + 1);
+			return (free_map(tab), NULL);
+		ft_memset(tab[i], 0, sizeof(int) * col);
 		i++;
 	}
 	return (tab);
 }
 
-int	map_parsing(t_map *map, char *src_map)
+void	map_parsing(t_mlx_data *data, char *src_map)
 {
 	char	**splitted;
 	int		i;
 	int		j;
+	int		k;
 
 	i = 0;
+	k = 0;
 	splitted = ft_split(src_map, ' ');
-	map->array_map = create_tab(map->lines, map->columns);
-	while (i < map->lines)
+	data->map->array_map = create_map(data->map->lines, data->map->columns);
+	while (i < data->map->lines && splitted[k])
 	{
 		j = 0;
-		while (j < map->columns)
+		while (j < data->map->columns && splitted[k])
 		{
-			map->array_map[i][j] = ft_atoi(splitted++);
+			if (splitted[k][0] != '\n')
+				data->map->array_map[i][j] = ft_atoi(splitted[k]);
 			j++;
-			if (*splitted == '\n')
-				splitted++;
+			k++;
 		}
 		i++;
 	}
+	free_splitted(splitted);
 }
 
-int	check_extract_map(t_map *map, int fd)
+int	check_extract_map(t_mlx_data *data, int fd)
 {
 	char	*src_map;
 	char	*tmp;
 	char	*line;
 
 	line = get_next_line(fd);
-	map->columns = col_count(line);
+	data->map->columns = col_count(line);
 	tmp = NULL;
-	src_map = NULL;
+	src_map = ft_strdup("");
 	while (line)
 	{
-		if (col_count(line) != map->columns)
+		if (col_count(line) != data->map->columns)
 			return (1);
-		tmp = src_map;
-		src_map = ft_strjoin(src_map, line);
-		free(tmp);
+		tmp = ft_strjoin(src_map, line);
+		free(src_map);
 		free(line);
-		map->lines++;
+		src_map = tmp;
+		data->map->lines++;
 		line = get_next_line(fd);
 	}
 	close(fd);
-	map_parsing(map, src_map);
+	map_parsing(data, src_map);
+	free(src_map);
 	return (0);
 }
