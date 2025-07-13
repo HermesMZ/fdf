@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:07:09 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/11 17:44:57 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/13 02:49:08 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,19 @@
 #include "fdf.h"
 
 #define MLX_ERROR       1
-#define WINDOW_WIDTH    1000
-#define WINDOW_HEIGHT   1000
 
-void	my_mlx_pixel_put(t_my_img *img, int x, int y, int color)
-{
-	int	offset;
 // ne pas afficher ce qui sort de l'ecran
-	offset = (img->line_len * y) + (x * (img->bits_per_pixel / 8));
-	*((unsigned int *)(offset + img->addr)) = color;
-}
 
 int	launch(t_mlx_data *data)
 {
-	data->win_ptr = mlx_new_window(data->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,
+	data->win_ptr = mlx_new_window(data->mlx_ptr, data->width, data->height,
 			"MY WORLD !");
 	if (data->win_ptr == NULL)
 	{
 		mlx_destroy_display(data->mlx_ptr);
 		return (MLX_ERROR);
 	}
-	data->img->img = mlx_new_image(data->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
+	data->img->img = mlx_new_image(data->mlx_ptr, data->width, data->height);
 	data->img->addr = mlx_get_data_addr(data->img->img,
 			&data->img->bits_per_pixel, &data->img->line_len,
 			&data->img->endian);

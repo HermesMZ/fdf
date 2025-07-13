@@ -3,14 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:18:19 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/11 15:58:07 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/13 02:43:28 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static void	hard_values(t_mlx_data *data)
+{
+	data->width = 1000;
+	data->height = 1000;
+	data->map->array_map = NULL;
+	data->map->columns = 0;
+	data->map->lines = 0;
+	data->mlx_ptr = NULL;
+	data->win_ptr = NULL;
+	data->zoom = 20;
+	data->offset_x = data->width / 2;
+	data->offset_y = data->height / 2;
+	data->angle_x = -0.5;
+	data->angle_y = 0.0;
+	data->angle_z = 0.5;
+}
 
 t_mlx_data	*init_data(void)
 {
@@ -19,7 +36,7 @@ t_mlx_data	*init_data(void)
 	data = malloc(sizeof(t_mlx_data));
 	if (!data)
 		return (NULL);
-	data->img = malloc(sizeof(t_img));
+	data->img = malloc(sizeof(t_my_img));
 	if (!data->img)
 		return (free(data), NULL);
 	data->map = malloc(sizeof(t_map));
@@ -29,10 +46,6 @@ t_mlx_data	*init_data(void)
 		free(data);
 		return (NULL);
 	}
-	data->map->array_map = NULL;
-	data->map->columns = 0;
-	data->map->lines = 0;
-	data->mlx_ptr = NULL;
-	data->win_ptr = NULL;
+	hard_values(data);
 	return (data);
 }
