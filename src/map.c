@@ -3,123 +3,75 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:09:12 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/11 15:20:57 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/13 17:30:55 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int	col_count(char *line)
+static int	process_single_map_line(int fd, t_mlx_data *data, int clx)
 {
-	int	i;
-	int	is_in_nbr;
-	int	count;
-
-	count = 0;
-	is_in_nbr = 0;
-	if (!line)
-		return (0);
-	i = 0;
-	while (line[i] != '\0')
-	{
-		if ((line[i] != ' ') && !is_in_nbr)
-		{
-			is_in_nbr = 1;
-			count ++;
-		}
-		else if (line[i] == ' ' || line[i] == '\n')
-			is_in_nbr = 0;
-		i++;
-	}
-	return (count);
-}
-
-void	free_map(int **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab && tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-}
-
-int	**create_map(int lines, int col)
-{
-	int	**tab;
-	int	i;
-
-	tab = malloc(sizeof(int *) * (lines + 1));
-	if (!tab)
-		return (NULL);
-	i = 0;
-	tab[lines] = NULL;
-	while (i < lines)
-	{
-		tab[i] = malloc(sizeof(int) * (col + 1));
-		if (!tab[i])
-			return (free_map(tab), NULL);
-		ft_memset(tab[i], 0, sizeof(int) * col);
-		i++;
-	}
-	return (tab);
-}
-
-void	map_parsing(t_mlx_data *data, char *src_map)
-{
-	char	**splitted;
-	int		i;
-	int		j;
-	int		k;
-
-	i = 0;
-	k = 0;
-	splitted = ft_split(src_map, ' ');
-	data->map->array_map = create_map(data->map->lines, data->map->columns);
-	while (i < data->map->lines && splitted[k])
-	{
-		j = 0;
-		while (j < data->map->columns && splitted[k])
-		{
-			if (splitted[k][0] != '\n')
-				data->map->array_map[i][j] = ft_atoi(splitted[k]);
-			j++;
-			k++;
-		}
-		i++;
-	}
-	free_splitted(splitted);
-}
-
-int	check_extract_map(t_mlx_data *data, int fd)
-{
-	char	*src_map;
-	char	*tmp;
 	char	*line;
+	char	**splitted_line;
+	int		j;
 
-	line = get_next_line(fd);
-	data->map->columns = col_count(line);
-	tmp = NULL;
-	src_map = ft_strdup("");
-	while (line)
+	line = new_line(fd);
+	if (!line)
+		return (ft_putstr_fd("Error: map filling.\n", 2), 1);
+	splitted_line = ft_split(line, ' ');
+	if (!splitted_line)
 	{
-		if (col_count(line) != data->map->columns)
-			return (1);
-		tmp = ft_strjoin(src_map, line);
-		free(src_map);
 		free(line);
-		src_map = tmp;
-		data->map->lines++;
-		line = get_next_line(fd);
+		ft_putstr_fd("Error: Failed to split map line.\n", 2);
+		return (1);
 	}
-	close(fd);
-	map_parsing(data, src_map);
-	free(src_map);
+	j = 0;
+	while (j < data->map->columns)
+	{
+		if (splitted_line[j])
+			data->map->array_map[clx][j]
+				= ft_atoi(splitted_line[j]);
+		j++;
+	}
+	free(line);
+	free_splitted(splitted_line);
+	return (0);
+}
+
+static int	fill_map_data(t_mlx_data *data, char *file_path)
+{
+	int	fd;
+	int	clx;
+
+	fd = open(file_path, O_RDONLY);
+	if (fd < 0)
+		return (perror("Error opening file for filling data"), 1);
+	clx = 0;
+	while (clx < data->map->lines)
+	{
+		if (process_single_map_line(fd, data, clx) == 1)
+			return (close_gnl_fd(fd), 1);
+		clx++;
+	}
+	close_gnl_fd(fd);
+	return (0);
+}
+
+int	check_extract_map(t_mlx_data *data, char *file_path)
+{
+	if (count_map_dimensions(data, file_path) == 1)
+		return (1);
+	data->map->array_map = create_map(data->map->lines, data->map->columns);
+	if (!data->map->array_map)
+		return (ft_putstr_fd("Error: Failed to allocate map memory.\n", 2), 1);
+	if (fill_map_data(data, file_path) == 1)
+	{
+		free_map(data->map->array_map);
+		data->map->array_map = NULL;
+		return (1);
+	}
 	return (0);
 }

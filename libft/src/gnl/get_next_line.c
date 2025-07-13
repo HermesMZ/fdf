@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 18:06:17 by MZimeris          #+#    #+#             */
-/*   Updated: 2025/07/10 13:50:20 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/13 17:27:28 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+static char	*gnl_clean(char *stash[])
+{
+	int	i;
+
+	i = 0;
+	while (i < MAX_FD)
+	{
+		if (stash[i] != NULL)
+		{
+			free(stash[i]);
+			stash[i] = NULL;
+		}
+		i++;
+	}
+	return (NULL);
+}
+
 
 static char	*add_to_stash(char **stash, char *buffer)
 {
@@ -90,6 +108,8 @@ char	*get_next_line(int fd)
 {
 	static char	*stash[MAX_FD];
 
+	if (fd == -1)
+		return (gnl_clean(stash));
 	if (fd < 0 || fd >= MAX_FD)
 		return (NULL);
 	if (!stash[fd])

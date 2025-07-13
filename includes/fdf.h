@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:05:08 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/13 04:45:24 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/13 18:41:13 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,21 @@
 // # include "mlx_int.h"
 # include <X11/keysym.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include <math.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <x86_64-linux-gnu/bits/fcntl-linux.h>
 # include "libft.h"
+
+typedef struct s_projected_bounds
+{
+	double	min_x;
+	double	max_x;
+	double	min_y;
+	double	max_y;
+	int		first_point_processed;
+}	t_projected_bounds;
 
 typedef struct s_draw
 {
@@ -70,6 +81,7 @@ typedef struct s_mlx_data
 	double		angle_x;
 	double		angle_y;
 	double		angle_z;
+	double		depth;
 }	t_mlx_data;
 
 // hooks
@@ -77,18 +89,36 @@ int			handle_input(int keysym, t_mlx_data *data);
 int			end_display(t_mlx_data *data);
 
 // map
-int			check_extract_map(t_mlx_data *data, int fd);
-void		free_map(int **tab);
+int			check_extract_map(t_mlx_data *data, char *file_path);
 
 // draw
-void		my_mlx_pixel_put(t_mlx_data *data, int x, int y, int color);
 void		draw_map(t_mlx_data *data);
+// void		my_mlx_pixel_put(t_mlx_data *data, int x, int y, int color);
 void		draw_line(t_point *p1, t_point p2, t_mlx_data *data, int color);
+
+// point
+void		link_points(t_mlx_data *data, int c, int l, t_point *point);
+t_point		project(t_mlx_data *data, t_point p);
+t_point		rotate(t_mlx_data *data, t_point p);
+
 
 // init
 t_mlx_data	*init_data(void);
+int			**create_map(int lines, int col);
+void		setup_view(t_mlx_data *data);
 
 // utils
 void		print_map(t_mlx_data *data);
+void		free_map(int **tab);
+void		close_gnl_fd(int fd);
+
+
+// count
+int			count_map_dimensions(t_mlx_data *data, char *file_path);
+char		*new_line(int fd);
+
+// setup
+void		find_projected_minmax(t_mlx_data *data, t_projected_bounds *bounds);
+
 
 #endif /*FDF_H*/

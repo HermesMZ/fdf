@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:18:19 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/13 03:44:48 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/13 18:41:27 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ static void	hard_values(t_mlx_data *data)
 	data->zoom = 20;
 	data->offset_x = data->width / 4;
 	data->offset_y = data->height / 4;
-	data->angle_x = -0.5;
+	data->angle_x = 0.9;
 	data->angle_y = 0.0;
-	data->angle_z = 0.5;
+	data->angle_z = 0.3;
+	data->depth = 0.01;
 }
 
 t_mlx_data	*init_data(void)
@@ -48,4 +49,25 @@ t_mlx_data	*init_data(void)
 	}
 	hard_values(data);
 	return (data);
+}
+
+int	**create_map(int lines, int col)
+{
+	int	**tab;
+	int	i;
+
+	tab = malloc(sizeof(int *) * (lines + 1));
+	if (!tab)
+		return (NULL);
+	i = 0;
+	tab[lines] = NULL;
+	while (i < lines)
+	{
+		tab[i] = malloc(sizeof(int) * (col + 1));
+		if (!tab[i])
+			return (free_map(tab), NULL);
+		ft_memset(tab[i], 0, sizeof(int) * col);
+		i++;
+	}
+	return (tab);
 }

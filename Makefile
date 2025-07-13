@@ -12,6 +12,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 LIBMLX = $(LIBMLX_DIR)/libmlx_Linux.a
 
 SRCS = \
+	count.c \
 	draw.c \
 	fdf.c \
 	hooks.c \
@@ -19,6 +20,8 @@ SRCS = \
 	map.c \
 	point.c \
 	utils.c \
+	setup_view.c \
+	setup_view_utils.c \
 
 SRCS_PATH = $(addprefix $(SRCS_DIR)/, $(SRCS))
 OBJS = $(SRCS_PATH:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)

@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 04:27:15 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/13 04:57:16 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/13 16:02:10 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ t_point	rotate(t_mlx_data *data, t_point p)
 t_point	project(t_mlx_data *data, t_point p)
 {
 	p.px = (int)(p.x * data->zoom + data ->offset_x);
-	p.py = (int)(p.y * data->zoom + data->offset_y - (p.z * data->zoom / 5));
+	p.py = (int)(p.y * data->zoom + data->offset_y
+			- (p.z * data->zoom * data->depth));
 	return (p);
 }
 
@@ -69,29 +70,4 @@ void	link_points(t_mlx_data *data, int c, int l, t_point *point)
 	}
 }
 
-void	draw_map(t_mlx_data *data)
-{
-	int		l;
-	int		c;
-	t_point	point;
 
-	ft_memset(data->img->addr, 0, data->img->line_len * data->height);
-	l = 0;
-	while (l < data->map->lines)
-	{
-		c = 0;
-		while (c < data->map->columns)
-		{
-			point.x = (double)c;
-			point.y = (double)l;
-			point.z = (double)data->map->array_map[l][c];
-			point = rotate(data, point);
-			point = project(data, point);
-			my_mlx_pixel_put(data, point.px, point.py, 0xFFFFFF);
-			link_points(data, c, l, &point);
-			c++;
-		}
-		l++;
-	}
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->img, 0, 0);
-}

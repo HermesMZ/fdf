@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"mlx.h": "c",
-		"fdf.h": "c"
+		"fdf.h": "c",
+		"fcntl.h": "c"
 	}
 }
