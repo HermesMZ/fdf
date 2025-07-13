@@ -6,17 +6,13 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:07:09 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/13 02:49:08 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/13 04:29:40 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //matrices
 
 #include "fdf.h"
-
-#define MLX_ERROR       1
-
-// ne pas afficher ce qui sort de l'ecran
 
 int	launch(t_mlx_data *data)
 {
@@ -25,14 +21,13 @@ int	launch(t_mlx_data *data)
 	if (data->win_ptr == NULL)
 	{
 		mlx_destroy_display(data->mlx_ptr);
-		return (MLX_ERROR);
+		return (1);
 	}
 	data->img->img = mlx_new_image(data->mlx_ptr, data->width, data->height);
 	data->img->addr = mlx_get_data_addr(data->img->img,
 			&data->img->bits_per_pixel, &data->img->line_len,
 			&data->img->endian);
-	my_mlx_pixel_put(data->img, 5, 5, 0x00FF0000);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->img, 0, 0);
+	draw_map(data);
 	return (0);
 }
 
@@ -44,7 +39,7 @@ int	main(int argc, char *argv[])
 	data = init_data();
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
-		return (MLX_ERROR);
+		return (1);
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);

@@ -1,7 +1,7 @@
 NAME = fdf
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-MLX_LIBS = -Lminilibx-linux -lmlx_Linux
+MLX_LIBS = -Lminilibx-linux -lmlx_Linux -lm
 X_LIBS = -lXext -lX11
 SRCS_DIR = src
 OBJS_DIR = objs
@@ -17,6 +17,7 @@ SRCS = \
 	hooks.c \
 	init.c \
 	map.c \
+	point.c \
 	utils.c \
 
 SRCS_PATH = $(addprefix $(SRCS_DIR)/, $(SRCS))

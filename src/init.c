@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:18:19 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/13 02:43:28 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/13 03:44:48 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static void	hard_values(t_mlx_data *data)
 	data->mlx_ptr = NULL;
 	data->win_ptr = NULL;
 	data->zoom = 20;
-	data->offset_x = data->width / 2;
-	data->offset_y = data->height / 2;
+	data->offset_x = data->width / 4;
+	data->offset_y = data->height / 4;
 	data->angle_x = -0.5;
 	data->angle_y = 0.0;
 	data->angle_z = 0.5;
