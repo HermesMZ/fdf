@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:05:08 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/13 18:41:13 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/14 16:26:26 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@
 # include <x86_64-linux-gnu/bits/fcntl-linux.h>
 # include "libft.h"
 
-typedef struct s_projected_bounds
+typedef struct s_bounds
 {
 	double	min_x;
 	double	max_x;
 	double	min_y;
 	double	max_y;
 	int		first_point_processed;
-}	t_projected_bounds;
+}	t_bounds;
 
 typedef struct s_draw
 {
@@ -118,7 +118,7 @@ int			count_map_dimensions(t_mlx_data *data, char *file_path);
 char		*new_line(int fd);
 
 // setup
-void		find_projected_minmax(t_mlx_data *data, t_projected_bounds *bounds);
+void		find_projected_minmax(t_mlx_data *data, t_bounds *bounds);
 
 
 #endif /*FDF_H*/

@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:59:59 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/13 18:07:33 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/14 16:43:20 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,47 @@ int	end_display(t_mlx_data *data)
 static void	rotate_img(int keysym, t_mlx_data *data)
 {
 	if (keysym == 117)
-		data->angle_x += 0.1;
+		data->angle_x += 0.01;
 	if (keysym == 106)
-		data->angle_x -= 0.1;
+		data->angle_x -= 0.01;
 	if (keysym == 105)
-		data->angle_y += 0.1;
+		data->angle_y += 0.01;
 	if (keysym == 107)
-		data->angle_y -= 0.1;
+		data->angle_y -= 0.01;
 	if (keysym == 111)
-		data->angle_z += 0.1;
+		data->angle_z += 0.01;
 	if (keysym == 108)
-		data->angle_z -= 0.1;
+		data->angle_z -= 0.01;
+}
+
+static void	zoom_img(int keysym, t_mlx_data *data)
+{
+	if (keysym == 121)
+		data->zoom -= 1;
+	if (keysym == 104)
+		data->zoom += 1;
+	ft_printf("zoom : %d\n", data->zoom);
+}
+
+static void	translate_img(int keysym, t_mlx_data *data)
+{
+	if (keysym == 119)
+		data->offset_y -= 8;
+	if (keysym == 115)
+		data->offset_y += 8;
+	if (keysym == 97)
+		data->offset_x -= 8;
+	if (keysym == 100)
+		data->offset_x += 8;
+}
+
+static void	depth_img(int keysym, t_mlx_data *data)
+{
+	if (keysym == 113)
+		data->depth -= 1;
+	if (keysym == 101)
+		data->depth += 1;
+	ft_printf("depth : %d\n", data->depth);
 }
 
 int	handle_input(int keysym, t_mlx_data *data)
@@ -62,6 +92,12 @@ int	handle_input(int keysym, t_mlx_data *data)
 	if (keysym == 117 || keysym == 106 || keysym == 105 || keysym == 107
 		|| keysym == 111 || keysym == 108)
 		rotate_img(keysym, data);
+	if (keysym == 121 || keysym == 104)
+		zoom_img(keysym, data);
+	if (keysym == 119 || keysym == 115 || keysym == 97 || keysym == 100)
+		translate_img(keysym, data);
+	if (keysym == 113 || keysym == 101)
+		depth_img(keysym, data);
 	if (keysym != XK_Escape)
 	{
 		draw_map(data);

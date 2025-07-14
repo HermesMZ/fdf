@@ -6,13 +6,13 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 18:39:57 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/13 18:46:41 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/14 15:55:35 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	update_bounds(t_point p_transformed, t_projected_bounds *bounds)
+static void	update_bounds(t_point p_transformed, t_bounds *bounds)
 {
 	if (!bounds->first_point_processed)
 	{
@@ -36,14 +36,14 @@ static void	update_bounds(t_point p_transformed, t_projected_bounds *bounds)
 	}
 }
 
-void	find_projected_minmax(t_mlx_data *data, t_projected_bounds *bounds)
+void	find_projected_minmax(t_mlx_data *data, t_bounds *bounds)
 {
 	int					l;
 	int					c;
 	t_point				p_original;
 	t_point				p_transformed;
 
-	bounds->first_point_processed = 0;
+	// bounds->first_point_processed = 0;
 	l = 0;
 	while (l < data->map->lines)
 	{
