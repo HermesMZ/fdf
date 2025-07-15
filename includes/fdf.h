@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:05:08 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/15 15:36:27 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/15 15:43:19 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ typedef struct s_mlx_data
 	void		*win_ptr;
 	t_map		*map;
 	t_my_img	*img;
-	t_keys		*keys;
+	t_keys		keys;
 	int			zoom;
 	int			offset_x;
 	int			offset_y;
