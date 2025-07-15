@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:05:08 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/15 14:39:12 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/15 15:36:27 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,24 @@
 # include <fcntl.h>
 # include <x86_64-linux-gnu/bits/fcntl-linux.h>
 # include "libft.h"
+
+typedef struct s_keys
+{
+	int	angle_x_plus;
+	int	angle_x_minus;
+	int	angle_y_plus;
+	int	angle_y_minus;
+	int	angle_z_plus;
+	int	angle_z_minus;
+	int	zoom_in;
+	int	zoom_out;
+	int	move_up;
+	int	move_down;
+	int	move_left;
+	int	move_right;
+	int	depth_in;
+	int	depth_out;
+}	t_keys;
 
 typedef struct s_bounds
 {
@@ -75,6 +93,7 @@ typedef struct s_mlx_data
 	void		*win_ptr;
 	t_map		*map;
 	t_my_img	*img;
+	t_keys		*keys;
 	int			zoom;
 	int			offset_x;
 	int			offset_y;
