@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:59:59 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/14 16:43:20 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/15 14:40:52 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	rotate_img(int keysym, t_mlx_data *data)
 		data->angle_z += 0.01;
 	if (keysym == 108)
 		data->angle_z -= 0.01;
+	printf("x %f y %f z%f\n", data->angle_x, data->angle_y, data->angle_z);
 }
 
 static void	zoom_img(int keysym, t_mlx_data *data)
