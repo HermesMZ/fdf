@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:05:08 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/16 22:32:39 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/16 23:18:08 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct s_map
 {
 	int		lines;
 	int		columns;
-	t_point	**points_map;
+	t_point	**points;
 	int		min_z;
 	int		max_z;
 }	t_map;
@@ -121,7 +121,7 @@ int			check_extract_map(t_mlx_data *data, char *file_path);
 // draw
 void		draw_map(t_mlx_data *data);
 // void		my_mlx_pixel_put(t_mlx_data *data, int x, int y, int color);
-void		draw_line(t_point *p1, t_point p2, t_mlx_data *data, int color);
+void		draw_line(t_mlx_data *data, t_point *p1, t_point *p2);
 
 // point
 void		link_points(t_mlx_data *data, int c, int l, t_point *point);
@@ -148,6 +148,7 @@ char		*new_line(int fd);
 void		find_projected_minmax(t_mlx_data *data, t_bounds *bounds);
 
 void		draw_commands(t_mlx_data *data);
+int interpolate_color(int c1, int c2, double ratio);
 
 
 #endif /*FDF_H*/

@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:20:24 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/16 21:56:29 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/16 22:59:27 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	print_map(t_mlx_data *data)
 		c = 0;
 		while (c < data->map->columns)
 		{
-			ft_printf("%-2d ", data->map->points_map[l][c]);
+			ft_printf("%-2d ", data->map->points[l][c]);
 			c++;
 		}
 		ft_printf("\n");
@@ -55,7 +55,7 @@ int	end_display(t_mlx_data *data)
 {
 	if (data->map)
 	{
-		free_map(data->map->points_map);
+		free_map(data->map->points);
 		free(data->map);
 	}
 	if (data->img && data->img->img)

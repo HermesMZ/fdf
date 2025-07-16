@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 02:12:56 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/16 22:31:53 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/16 23:18:00 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,42 +24,51 @@ static void	my_mlx_pixel_put(t_mlx_data *data, int x, int y, int color)
 
 static void	move_draw(t_draw *draw, t_point *p1)
 {
-	int	err;
+	int	err_check;
 
-	err = 2 * draw->err;
-	if (err > -draw->dy)
+	err_check = 2 * draw->err;
+	if (err_check > -draw->dy)
 	{
 		draw->err -= draw->dy;
 		p1->px += draw->sx;
 	}
-	if (err < draw->dx)
+	if (err_check < draw->dx)
 	{
 		draw->err += draw->dx;
 		p1->py += draw->sy;
 	}
 }
 
-void	draw_line(t_point *p1, t_point p2, t_mlx_data *data, int color)
+void	draw_line(t_mlx_data *data, t_point *p1, t_point *p2)
 {
 	t_draw	draw;
+	int		color;
+	double	ratio;
+	double	total_steps;
+	int		step_count;
 
-	draw.dx = abs(p2.px - p1->px);
-	draw.dy = abs(p2.py - p1->py);
-	if (p1->px < p2.px)
+	draw.dx = abs(p2->px - p1->px);
+	draw.dy = abs(p2->py - p1->py);
+	if (p1->px < p2->px)
 		draw.sx = 1;
 	else
 		draw.sx = -1;
-	if (p1->py < p2.py)
+	if (p1->py < p2->py)
 		draw.sy = 1;
 	else
 		draw.sy = -1;
 	draw.err = draw.dx - draw.dy;
+	total_steps = fmax(draw.dx, draw.dy);
+	step_count = 0;
 	while (1)
 	{
+		ratio = (double)step_count / total_steps;
+		color = interpolate_color(p1->color, p2->color, ratio);
 		my_mlx_pixel_put(data, p1->px, p1->py, color);
-		if (p1->px == p2.px && p1->py == p2.py)
+		if (p1->px == p2->px && p1->py == p2->py)
 			break ;
 		move_draw(&draw, p1);
+		step_count++;
 	}
 }
 
@@ -78,10 +87,11 @@ void	draw_map(t_mlx_data *data)
 		{
 			point.x = (double)c;
 			point.y = (double)l;
-			point.z = (double)data->map->points_map[l][c].z;
+			point.z = (double)data->map->points[l][c].z;
+			point.color = data->map->points[l][c].color;
 			point = rotate(data, point);
 			point = project(data, point);
-			my_mlx_pixel_put(data, point.px, point.py, 0xFFFFFF);
+			my_mlx_pixel_put(data, point.px, point.py, point.color);
 			link_points(data, c, l, &point);
 			c++;
 		}

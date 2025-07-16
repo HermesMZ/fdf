@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:18:19 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/16 22:02:19 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/16 22:59:27 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	hard_values(t_mlx_data *data)
 {
 	data->width = 1000;
 	data->height = 500;
-	data->map->points_map = NULL;
+	data->map->points = NULL;
 	data->map->columns = 0;
 	data->map->lines = 0;
 	data->map->min_z = 2147483647;

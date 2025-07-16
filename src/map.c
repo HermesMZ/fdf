@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:09:12 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/16 22:40:02 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/16 22:59:27 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static int	process_single_point(t_mlx_data *data, int line_index, int j,
 	t_point	new_point;
 	char	**splitted;
 
+	new_point.color = 0xFFFFFF;
 	splitted = ft_split(point, ',');
 	if (!splitted)
 		return (ft_putstr_fd("Error: z / color.\n", 2), 1);
@@ -29,7 +30,7 @@ static int	process_single_point(t_mlx_data *data, int line_index, int j,
 	if (splitted[1])
 		new_point.color = ft_hextoi(splitted[1]);
 	free_splitted(splitted);
-	data->map->points_map[line_index][j] = new_point;
+	data->map->points[line_index][j] = new_point;
 	return (0);
 }
 
@@ -92,10 +93,10 @@ static void	find_min_max_z(t_mlx_data *data)
 		c = 0;
 		while (c < data->map->columns)
 		{
-			if (data->map->points_map[l][c].z < data->map->min_z)
-				data->map->min_z = data->map->points_map[l][c].z;
-			if (data->map->points_map[l][c].z > data->map->max_z)
-				data->map->max_z = data->map->points_map[l][c].z;
+			if (data->map->points[l][c].z < data->map->min_z)
+				data->map->min_z = data->map->points[l][c].z;
+			if (data->map->points[l][c].z > data->map->max_z)
+				data->map->max_z = data->map->points[l][c].z;
 			c++;
 		}
 		l++;
@@ -106,13 +107,13 @@ int	check_extract_map(t_mlx_data *data, char *file_path)
 {
 	if (count_map_dimensions(data, file_path) == 1)
 		return (1);
-	data->map->points_map = create_map(data->map->lines, data->map->columns);
-	if (!data->map->points_map)
+	data->map->points = create_map(data->map->lines, data->map->columns);
+	if (!data->map->points)
 		return (ft_putstr_fd("Error: Failed to allocate map memory.\n", 2), 1);
 	if (fill_map_data(data, file_path) == 1)
 	{
-		free_map(data->map->points_map);
-		data->map->points_map = NULL;
+		free_map(data->map->points);
+		data->map->points = NULL;
 		return (1);
 	}
 	find_min_max_z(data);

@@ -12,6 +12,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 LIBMLX = $(LIBMLX_DIR)/libmlx_Linux.a
 
 SRCS = \
+	colors.c \
 	count.c \
 	draw.c \
 	draw_commands.c \

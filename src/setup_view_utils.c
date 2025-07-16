@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 18:39:57 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/16 22:35:22 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/16 22:59:27 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	find_projected_minmax(t_mlx_data *data, t_bounds *bounds)
 		{
 			p_original.x = (double)c;
 			p_original.y = (double)l;
-			p_original.z = (double)data->map->points_map[l][c].z;
+			p_original.z = (double)data->map->points[l][c].z;
 			p_transformed = rotate(data, p_original);
 			p_transformed = project(data, p_transformed);
 			update_bounds(p_transformed, bounds);
