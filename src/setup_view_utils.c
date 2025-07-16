@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 18:39:57 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/14 15:55:35 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/16 21:33:59 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static void	update_bounds(t_point p_transformed, t_bounds *bounds)
 			bounds->min_x = p_transformed.px;
 		else if (p_transformed.px > bounds->max_x)
 			bounds->max_x = p_transformed.px;
-
 		if (p_transformed.py < bounds->min_y)
 			bounds->min_y = p_transformed.py;
 		else if (p_transformed.py > bounds->max_y)
@@ -43,7 +42,6 @@ void	find_projected_minmax(t_mlx_data *data, t_bounds *bounds)
 	t_point				p_original;
 	t_point				p_transformed;
 
-	// bounds->first_point_processed = 0;
 	l = 0;
 	while (l < data->map->lines)
 	{

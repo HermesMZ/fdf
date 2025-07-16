@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 18:12:49 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/16 18:41:18 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/16 21:33:47 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,20 @@ static double	calculate_initial_zoom(t_mlx_data *data, t_bounds *bounds)
 {
 	double	zoom;
 
-	zoom = fmin((data->width * 0.9) / (double)(bounds->max_x - bounds->min_x),
-			(data->height * 0.9) / (double)(bounds->max_y - bounds->min_y));
-
+	zoom = fmin((data->width * 0.8) / (double)(bounds->max_x - bounds->min_x),
+			(data->height * 0.8) / (double)(bounds->max_y - bounds->min_y));
 	return (zoom);
 }
 
 static void	calculate_and_set_offset(t_mlx_data *data, t_bounds *bounds)
 {
-	data->offset_x = (int)((data->width / 2.0)
-			- ft_abs((bounds->min_x + ((bounds->max_x
-							- bounds->min_x) / 2.0))));
-	data->offset_y = (int)((data->height / 2.0)
-			- ft_abs((bounds->max_y + ((bounds->min_y
-							- bounds->max_y) / 2.0))));
+	double	center_x;
+	double	center_y;
+
+	center_x = (bounds->min_x + bounds->max_x) / 2.0;
+	center_y = (bounds->min_y + bounds->max_y) / 2.0;
+	data->offset_x = (int)((data->width / 2.0) - center_x);
+	data->offset_y = (int)((data->height / 2.0) - center_y);
 }
 
 void	setup_view(t_mlx_data *data)

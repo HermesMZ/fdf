@@ -14,6 +14,7 @@ LIBMLX = $(LIBMLX_DIR)/libmlx_Linux.a
 SRCS = \
 	count.c \
 	draw.c \
+	draw_commands.c \
 	fdf.c \
 	hooks.c \
 	init.c \

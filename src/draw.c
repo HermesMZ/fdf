@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 02:12:56 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/16 19:59:21 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/16 20:44:57 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	draw_map(t_mlx_data *data)
 			point.x = (double)c;
 			point.y = (double)l;
 			point.z = (double)data->map->array_map[l][c];
-			// point.z *= data->depth;
 			point = rotate(data, point);
 			point = project(data, point);
 			my_mlx_pixel_put(data, point.px, point.py, 0xFFFFFF);
@@ -90,42 +89,4 @@ void	draw_map(t_mlx_data *data)
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->img, 0, 0);
 	draw_commands(data);
-}
-
-void	draw_commands(t_mlx_data *data)
-{
-	int	x;
-	int	y;
-	int	line_height;
-
-	x = 20;
-	y = 20;
-	line_height = 20;
-	mlx_string_put(data->mlx_ptr, data->win_ptr, x, y, 0xFF0000,
-		"--- FdF Commands ---");
-	y += line_height;
-	mlx_string_put(data->mlx_ptr, data->win_ptr, x, y, 0xFF0000,
-		"Zoom: H (In) / Y (Out)");
-	y += line_height;
-	mlx_string_put(data->mlx_ptr, data->win_ptr, x, y, 0xFF0000,
-		"Rot. X: U (+) / J (-)");
-	y += line_height;
-	mlx_string_put(data->mlx_ptr, data->win_ptr, x, y, 0xFF0000,
-		"Rot. Y: I (+) / K (-)");
-	y += line_height;
-	mlx_string_put(data->mlx_ptr, data->win_ptr, x, y, 0xFF0000,
-		"Rot. Z: O (+) / L (-)");
-	y += line_height;
-	mlx_string_put(data->mlx_ptr, data->win_ptr, x, y, 0xFF0000,
-		"MoveV: W (Up) / S (Down)");
-	y += line_height;
-	mlx_string_put(data->mlx_ptr, data->win_ptr, x, y, 0xFF0000,
-		"MoveH: A (Left) / D (Right)");
-	y += line_height;
-	mlx_string_put(data->mlx_ptr, data->win_ptr, x, y, 0xFF0000,
-		"Depth: Q (In) / E (Out)");
-	y += line_height;
-	mlx_string_put(data->mlx_ptr, data->win_ptr, x, y, 0xFF0000,
-		"Quit: ESC");
-	y += line_height;
 }

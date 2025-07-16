@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:59:59 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/16 19:17:41 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/16 21:00:05 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static void	_handle_zoom_keys(t_mlx_data *data)
 	if (data->keys.depth_in)
 	{
 		if (data->depth < 2.0)
-			data->depth += 0.05;
+			data->depth += 0.01;
 	}
 	if (data->keys.depth_out)
 	{
 		if (data->depth > -2.0)
-			data->depth -= 0.05;
+			data->depth -= 0.01;
 	}
 }
 
@@ -65,6 +65,6 @@ int	main_loop_update(t_mlx_data *data)
 	_handle_zoom_keys(data);
 	_handle_move_keys(data);
 	draw_map(data);
-	// ft_printf("zoom %d\n", data->zoom);
 	return (0);
 }
+	// ft_printf("zoom %d\n", data->zoom);

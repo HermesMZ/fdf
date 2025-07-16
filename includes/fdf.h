@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:05:08 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/16 19:22:58 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/16 20:49:13 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_point
 	double	z;
 	int		px;
 	int		py;
+	int		color;
 }	t_point;
 
 typedef struct s_map

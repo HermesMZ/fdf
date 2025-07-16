@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:18:19 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/16 20:07:48 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/16 21:01:56 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	hard_values(t_mlx_data *data)
 	data->angle_x = -0.005;
 	data->angle_y = -0.01;
 	data->angle_z = 0.775;
-	data->depth = 0.1;
+	data->depth = 1;
 	data->keys = (t_keys){0};
 }
 
