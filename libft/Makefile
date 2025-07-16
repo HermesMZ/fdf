@@ -45,6 +45,7 @@ SRCS_MEM := \
 SRCS_NUM := \
 	ft_abs.c \
     ft_atoi.c \
+    ft_atol.c \
     ft_itoa.c \
     ft_itoa_ll.c \
 	ft_max.c \
