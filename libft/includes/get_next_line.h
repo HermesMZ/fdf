@@ -3,21 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 18:07:57 by MZimeris          #+#    #+#             */
-/*   Updated: 2025/07/10 13:49:33 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/16 17:20:27 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-// pour malloc free
 # include <stdlib.h>
-// pour open
 # include <fcntl.h>
-// pour open read close
 # include <unistd.h> 
 
 // valeur par défaut du BUFFER si non spécifié à la compilation

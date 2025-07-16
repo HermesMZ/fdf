@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 14:07:41 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/11 15:04:28 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/16 17:24:15 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <string.h>
 # include <unistd.h>
 # include "ft_printf.h"
-# include "get_next_line.h"
 
 // get_next_line
 char		*get_next_line(int fd);
@@ -77,6 +76,7 @@ void		*ft_realloc(void *ptr, size_t size);
 // num
 int			ft_abs(int x);
 int			ft_atoi(const char *str);
+long		ft_atol(const char *str);
 char		*ft_itoa(int n);
 char		*ft_itoa_ll(long long n);
 int			ft_max(int a, int b);
@@ -111,9 +111,6 @@ char		*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char		*ft_strrchr(const char *s, int c);
 char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
-int			ft_tolower(int c);
-char		*ft_toupper_string(const char *str);
-int			ft_toupper(int c);
 
 // type
 int			ft_isalnum(int c);
@@ -121,5 +118,8 @@ int			ft_isalpha(int c);
 int			ft_isascii(int c);
 int			ft_isdigit(int c);
 int			ft_isprint(int c);
+int			ft_tolower(int c);
+int			ft_toupper(int c);
+char		*ft_toupper_string(const char *str);
 
 #endif /*LIBFT_H*/
