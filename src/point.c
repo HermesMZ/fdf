@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 04:27:15 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/16 20:40:08 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/16 22:35:05 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	link_points(t_mlx_data *data, int c, int l, t_point *point)
 	{
 		point_right.x = (double)(c + 1);
 		point_right.y = (double)l;
-		point_right.z = (double)data->map->array_map[l][c + 1];
+		point_right.z = (double)data->map->points_map[l][c + 1].z;
 		point_right = rotate(data, point_right);
 		point_right = project(data, point_right);
 		draw_line(&point_tmp, point_right, data, 0xFFFFFF);
@@ -67,7 +67,7 @@ void	link_points(t_mlx_data *data, int c, int l, t_point *point)
 	{
 		point_down.x = (double)c;
 		point_down.y = (double)(l + 1);
-		point_down.z = (double)data->map->array_map[l + 1][c];
+		point_down.z = (double)data->map->points_map[l + 1][c].z;
 		point_down = rotate(data, point_down);
 		point_down = project(data, point_down);
 		draw_line(&point_tmp, point_down, data, 0xFFFFFF);

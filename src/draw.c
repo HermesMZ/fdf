@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 02:12:56 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/16 20:44:57 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/16 22:31:53 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	draw_map(t_mlx_data *data)
 		{
 			point.x = (double)c;
 			point.y = (double)l;
-			point.z = (double)data->map->array_map[l][c];
+			point.z = (double)data->map->points_map[l][c].z;
 			point = rotate(data, point);
 			point = project(data, point);
 			my_mlx_pixel_put(data, point.px, point.py, 0xFFFFFF);

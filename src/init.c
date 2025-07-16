@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:18:19 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/16 21:01:56 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/16 22:02:19 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	hard_values(t_mlx_data *data)
 {
 	data->width = 1000;
 	data->height = 500;
-	data->map->array_map = NULL;
+	data->map->points_map = NULL;
 	data->map->columns = 0;
 	data->map->lines = 0;
 	data->map->min_z = 2147483647;
@@ -53,23 +53,23 @@ t_mlx_data	*init_data(void)
 	return (data);
 }
 
-int	**create_map(int lines, int col)
+t_point	**create_map(int lines, int col)
 {
-	int	**tab;
-	int	i;
+	t_point	**points;
+	int		i;
 
-	tab = malloc(sizeof(int *) * (lines + 1));
-	if (!tab)
+	points = malloc(sizeof(t_point *) * (lines + 1));
+	if (!points)
 		return (NULL);
 	i = 0;
-	tab[lines] = NULL;
+	points[lines] = NULL;
 	while (i < lines)
 	{
-		tab[i] = malloc(sizeof(int) * (col + 1));
-		if (!tab[i])
-			return (free_map(tab), NULL);
-		ft_memset(tab[i], 0, sizeof(int) * col);
+		points[i] = malloc(sizeof(t_point) * (col + 1));
+		if (!points[i])
+			return (free_map(points), NULL);
+		ft_memset(points[i], 0, sizeof(t_point) * col);
 		i++;
 	}
-	return (tab);
+	return (points);
 }

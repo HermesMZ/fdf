@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:05:08 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/16 20:49:13 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/16 22:32:39 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,11 @@ typedef struct s_point
 
 typedef struct s_map
 {
-	int	lines;
-	int	columns;
-	int	**array_map;
-	int	min_z;
-	int	max_z;
+	int		lines;
+	int		columns;
+	t_point	**points_map;
+	int		min_z;
+	int		max_z;
 }	t_map;
 
 typedef struct s_my_img
@@ -131,12 +131,12 @@ t_point		rotate(t_mlx_data *data, t_point p);
 
 // init
 t_mlx_data	*init_data(void);
-int			**create_map(int lines, int col);
+t_point		**create_map(int lines, int col);
 void		setup_view(t_mlx_data *data);
 
 // utils
 void		print_map(t_mlx_data *data);
-void		free_map(int **tab);
+void		free_map(t_point **tab);
 void		close_gnl_fd(int fd);
 int			end_display(t_mlx_data *data);
 

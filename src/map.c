@@ -6,13 +6,34 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:09:12 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/16 19:29:00 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/16 22:40:02 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int	process_single_map_line(int fd, t_mlx_data *data, int clx)
+static int	process_single_point(t_mlx_data *data, int line_index, int j,
+	char *point)
+{
+	t_point	new_point;
+	char	**splitted;
+
+	splitted = ft_split(point, ',');
+	if (!splitted)
+		return (ft_putstr_fd("Error: z / color.\n", 2), 1);
+	new_point.x = (double)j;
+	new_point.y = (double)line_index;
+	new_point.z = ft_atoi(splitted[0]);
+	new_point.px = 0;
+	new_point.py = 0;
+	if (splitted[1])
+		new_point.color = ft_hextoi(splitted[1]);
+	free_splitted(splitted);
+	data->map->points_map[line_index][j] = new_point;
+	return (0);
+}
+
+static int	process_single_map_line(int fd, t_mlx_data *data, int line_index)
 {
 	char	*line;
 	char	**splitted_line;
@@ -31,9 +52,9 @@ static int	process_single_map_line(int fd, t_mlx_data *data, int clx)
 	j = 0;
 	while (j < data->map->columns)
 	{
-		if (splitted_line[j])
-			data->map->array_map[clx][j]
-				= ft_atoi(splitted_line[j]);
+		if (splitted_line[j] && process_single_point(data, line_index,
+				j, splitted_line[j]))
+			return (1);
 		j++;
 	}
 	free(line);
@@ -44,17 +65,17 @@ static int	process_single_map_line(int fd, t_mlx_data *data, int clx)
 static int	fill_map_data(t_mlx_data *data, char *file_path)
 {
 	int	fd;
-	int	clx;
+	int	line_index;
 
 	fd = open(file_path, O_RDONLY);
 	if (fd < 0)
 		return (perror("Error opening file for filling data"), 1);
-	clx = 0;
-	while (clx < data->map->lines)
+	line_index = 0;
+	while (line_index < data->map->lines)
 	{
-		if (process_single_map_line(fd, data, clx) == 1)
+		if (process_single_map_line(fd, data, line_index) == 1)
 			return (close_gnl_fd(fd), 1);
-		clx++;
+		line_index++;
 	}
 	close_gnl_fd(fd);
 	return (0);
@@ -71,10 +92,10 @@ static void	find_min_max_z(t_mlx_data *data)
 		c = 0;
 		while (c < data->map->columns)
 		{
-			if (data->map->array_map[l][c] < data->map->min_z)
-				data->map->min_z = data->map->array_map[l][c];
-			if (data->map->array_map[l][c] > data->map->max_z)
-				data->map->max_z = data->map->array_map[l][c];
+			if (data->map->points_map[l][c].z < data->map->min_z)
+				data->map->min_z = data->map->points_map[l][c].z;
+			if (data->map->points_map[l][c].z > data->map->max_z)
+				data->map->max_z = data->map->points_map[l][c].z;
 			c++;
 		}
 		l++;
@@ -85,13 +106,13 @@ int	check_extract_map(t_mlx_data *data, char *file_path)
 {
 	if (count_map_dimensions(data, file_path) == 1)
 		return (1);
-	data->map->array_map = create_map(data->map->lines, data->map->columns);
-	if (!data->map->array_map)
+	data->map->points_map = create_map(data->map->lines, data->map->columns);
+	if (!data->map->points_map)
 		return (ft_putstr_fd("Error: Failed to allocate map memory.\n", 2), 1);
 	if (fill_map_data(data, file_path) == 1)
 	{
-		free_map(data->map->array_map);
-		data->map->array_map = NULL;
+		free_map(data->map->points_map);
+		data->map->points_map = NULL;
 		return (1);
 	}
 	find_min_max_z(data);

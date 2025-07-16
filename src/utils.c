@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:20:24 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/16 18:24:28 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/16 21:56:29 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	close_gnl_fd(int fd)
 	close(fd);
 }
 
-void	free_map(int **tab)
+void	free_map(t_point **tab)
 {
 	int	i;
 
@@ -43,7 +43,7 @@ void	print_map(t_mlx_data *data)
 		c = 0;
 		while (c < data->map->columns)
 		{
-			ft_printf("%-2d ", data->map->array_map[l][c]);
+			ft_printf("%-2d ", data->map->points_map[l][c]);
 			c++;
 		}
 		ft_printf("\n");
@@ -55,7 +55,7 @@ int	end_display(t_mlx_data *data)
 {
 	if (data->map)
 	{
-		free_map(data->map->array_map);
+		free_map(data->map->points_map);
 		free(data->map);
 	}
 	if (data->img && data->img->img)
@@ -64,9 +64,7 @@ int	end_display(t_mlx_data *data)
 		free(data->img);
 	}
 	if (data->win_ptr != NULL)
-	{
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	}
 	if (data->mlx_ptr != NULL)
 	{
 		mlx_destroy_display(data->mlx_ptr);
