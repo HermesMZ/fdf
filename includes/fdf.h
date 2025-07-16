@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:05:08 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/15 14:39:12 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/16 19:22:58 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "mlx.h"
 // # include "mlx_int.h"
 # include <X11/keysym.h>
+# include <X11/X.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
@@ -23,6 +24,24 @@
 # include <fcntl.h>
 # include <x86_64-linux-gnu/bits/fcntl-linux.h>
 # include "libft.h"
+
+typedef struct s_keys
+{
+	int	angle_x_plus;
+	int	angle_x_minus;
+	int	angle_y_plus;
+	int	angle_y_minus;
+	int	angle_z_plus;
+	int	angle_z_minus;
+	int	zoom_in;
+	int	zoom_out;
+	int	move_up;
+	int	move_down;
+	int	move_left;
+	int	move_right;
+	int	depth_in;
+	int	depth_out;
+}	t_keys;
 
 typedef struct s_bounds
 {
@@ -56,6 +75,8 @@ typedef struct s_map
 	int	lines;
 	int	columns;
 	int	**array_map;
+	int	min_z;
+	int	max_z;
 }	t_map;
 
 typedef struct s_my_img
@@ -75,6 +96,7 @@ typedef struct s_mlx_data
 	void		*win_ptr;
 	t_map		*map;
 	t_my_img	*img;
+	t_keys		keys;
 	int			zoom;
 	int			offset_x;
 	int			offset_y;
@@ -84,9 +106,13 @@ typedef struct s_mlx_data
 	double		depth;
 }	t_mlx_data;
 
+// keys
+int			key_press(int keysym, t_mlx_data *data);
+int			key_release(int keysym, t_mlx_data *data);
+
 // hooks
-int			handle_input(int keysym, t_mlx_data *data);
-int			end_display(t_mlx_data *data);
+int			main_loop_update(t_mlx_data *data);
+
 
 // map
 int			check_extract_map(t_mlx_data *data, char *file_path);
@@ -111,7 +137,7 @@ void		setup_view(t_mlx_data *data);
 void		print_map(t_mlx_data *data);
 void		free_map(int **tab);
 void		close_gnl_fd(int fd);
-
+int			end_display(t_mlx_data *data);
 
 // count
 int			count_map_dimensions(t_mlx_data *data, char *file_path);
@@ -119,6 +145,8 @@ char		*new_line(int fd);
 
 // setup
 void		find_projected_minmax(t_mlx_data *data, t_bounds *bounds);
+
+void		draw_commands(t_mlx_data *data);
 
 
 #endif /*FDF_H*/

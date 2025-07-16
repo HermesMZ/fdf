@@ -17,6 +17,7 @@ SRCS = \
 	fdf.c \
 	hooks.c \
 	init.c \
+	keys.c \
 	map.c \
 	point.c \
 	utils.c \
