@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:09:12 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/13 17:30:55 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/16 19:29:00 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,27 @@ static int	fill_map_data(t_mlx_data *data, char *file_path)
 	return (0);
 }
 
+static void	find_min_max_z(t_mlx_data *data)
+{
+	int	l;
+	int	c;
+
+	l = 0;
+	while (l < data->map->lines)
+	{
+		c = 0;
+		while (c < data->map->columns)
+		{
+			if (data->map->array_map[l][c] < data->map->min_z)
+				data->map->min_z = data->map->array_map[l][c];
+			if (data->map->array_map[l][c] > data->map->max_z)
+				data->map->max_z = data->map->array_map[l][c];
+			c++;
+		}
+		l++;
+	}
+}
+
 int	check_extract_map(t_mlx_data *data, char *file_path)
 {
 	if (count_map_dimensions(data, file_path) == 1)
@@ -73,5 +94,6 @@ int	check_extract_map(t_mlx_data *data, char *file_path)
 		data->map->array_map = NULL;
 		return (1);
 	}
+	find_min_max_z(data);
 	return (0);
 }
