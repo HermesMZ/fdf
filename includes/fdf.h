@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:05:08 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/16 23:18:08 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/17 16:34:19 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,16 @@ typedef struct s_keys
 	int	depth_out;
 }	t_keys;
 
+typedef struct s_col
+{
+	unsigned char	t;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+	unsigned int	color;
+}	t_col;
+
+
 typedef struct s_bounds
 {
 	double	min_x;
@@ -63,12 +73,12 @@ typedef struct s_draw
 
 typedef struct s_point
 {
-	double	x;
-	double	y;
-	double	z;
-	int		px;
-	int		py;
-	int		color;
+	double			x;
+	double			y;
+	double			z;
+	int				px;
+	int				py;
+	unsigned int	color;
 }	t_point;
 
 typedef struct s_map
@@ -114,7 +124,6 @@ int			key_release(int keysym, t_mlx_data *data);
 // hooks
 int			main_loop_update(t_mlx_data *data);
 
-
 // map
 int			check_extract_map(t_mlx_data *data, char *file_path);
 
@@ -127,7 +136,6 @@ void		draw_line(t_mlx_data *data, t_point *p1, t_point *p2);
 void		link_points(t_mlx_data *data, int c, int l, t_point *point);
 t_point		project(t_mlx_data *data, t_point p);
 t_point		rotate(t_mlx_data *data, t_point p);
-
 
 // init
 t_mlx_data	*init_data(void);

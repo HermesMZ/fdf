@@ -6,7 +6,7 @@
 /*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 02:12:56 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/16 23:18:00 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/17 16:56:59 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ static void	move_draw(t_draw *draw, t_point *p1)
 
 void	draw_line(t_mlx_data *data, t_point *p1, t_point *p2)
 {
-	t_draw	draw;
-	int		color;
-	double	ratio;
-	double	total_steps;
-	int		step_count;
+	t_draw			draw;
+	unsigned int	color;
+	double			ratio;
+	double			total_steps;
+	int				step_count;
 
 	draw.dx = abs(p2->px - p1->px);
 	draw.dy = abs(p2->py - p1->py);
