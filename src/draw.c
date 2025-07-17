@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 02:12:56 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/17 16:56:59 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/17 18:35:28 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,13 @@ void	draw_line(t_mlx_data *data, t_point *p1, t_point *p2)
 	else
 		draw.sy = -1;
 	draw.err = draw.dx - draw.dy;
-	total_steps = fmax(draw.dx, draw.dy);
+	total_steps = sqrt(pow(draw.dx, 2) + pow(draw.dy, 2));
 	step_count = 0;
 	while (1)
 	{
+		// printf("p1 %d, p2 %d\n", p1->color, p2->color);
 		ratio = (double)step_count / total_steps;
+		// ratio = 0;
 		color = interpolate_color(p1->color, p2->color, ratio);
 		my_mlx_pixel_put(data, p1->px, p1->py, color);
 		if (p1->px == p2->px && p1->py == p2->py)
