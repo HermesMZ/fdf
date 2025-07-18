@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:05:08 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/17 16:34:19 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/18 19:00:45 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 
 typedef struct s_keys
 {
+	int	first_draw;
 	int	angle_x_plus;
 	int	angle_x_minus;
 	int	angle_y_plus;
@@ -78,7 +79,7 @@ typedef struct s_point
 	double			z;
 	int				px;
 	int				py;
-	unsigned int	color;
+	t_col			color;
 }	t_point;
 
 typedef struct s_map
@@ -156,7 +157,9 @@ char		*new_line(int fd);
 void		find_projected_minmax(t_mlx_data *data, t_bounds *bounds);
 
 void		draw_commands(t_mlx_data *data);
-int interpolate_color(int c1, int c2, double ratio);
+void		extract_rgb(t_col *col, int c);
+
+int			interpolate_color(t_col c1, t_col c2, double ratio);
 
 
 #endif /*FDF_H*/

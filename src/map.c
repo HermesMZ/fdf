@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:09:12 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/16 22:59:27 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/18 15:39:48 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	process_single_point(t_mlx_data *data, int line_index, int j,
 	t_point	new_point;
 	char	**splitted;
 
-	new_point.color = 0xFFFFFF;
+	new_point.color.color = 0xFFFFFF;
 	splitted = ft_split(point, ',');
 	if (!splitted)
 		return (ft_putstr_fd("Error: z / color.\n", 2), 1);
@@ -28,7 +28,8 @@ static int	process_single_point(t_mlx_data *data, int line_index, int j,
 	new_point.px = 0;
 	new_point.py = 0;
 	if (splitted[1])
-		new_point.color = ft_hextoi(splitted[1]);
+		new_point.color.color = ft_hextoi(splitted[1]);
+	extract_rgb(&new_point.color, new_point.color.color);
 	free_splitted(splitted);
 	data->map->points[line_index][j] = new_point;
 	return (0);

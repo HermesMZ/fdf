@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:18:19 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/16 22:59:27 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/18 17:10:35 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	hard_values(t_mlx_data *data)
 	data->angle_z = 0.775;
 	data->depth = 1;
 	data->keys = (t_keys){0};
+	data->keys.first_draw = 1;
 }
 
 t_mlx_data	*init_data(void)

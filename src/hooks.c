@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:59:59 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/16 21:00:05 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/18 16:14:12 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,14 @@ static void	_handle_move_keys(t_mlx_data *data)
 
 int	main_loop_update(t_mlx_data *data)
 {
+	t_keys	stop;
+
+	stop = (t_keys){0};
 	_handle_zoom_keys(data);
 	_handle_move_keys(data);
-	draw_map(data);
+	if (ft_memcmp(&data->keys, &stop, sizeof(t_keys)))
+		draw_map(data);
+	data->keys.first_draw = 0;
 	return (0);
 }
 	// ft_printf("zoom %d\n", data->zoom);

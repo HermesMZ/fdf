@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 02:12:56 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/17 18:35:28 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/18 15:46:00 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,7 @@ void	draw_line(t_mlx_data *data, t_point *p1, t_point *p2)
 	step_count = 0;
 	while (1)
 	{
-		// printf("p1 %d, p2 %d\n", p1->color, p2->color);
 		ratio = (double)step_count / total_steps;
-		// ratio = 0;
 		color = interpolate_color(p1->color, p2->color, ratio);
 		my_mlx_pixel_put(data, p1->px, p1->py, color);
 		if (p1->px == p2->px && p1->py == p2->py)
@@ -93,7 +91,7 @@ void	draw_map(t_mlx_data *data)
 			point.color = data->map->points[l][c].color;
 			point = rotate(data, point);
 			point = project(data, point);
-			my_mlx_pixel_put(data, point.px, point.py, point.color);
+			my_mlx_pixel_put(data, point.px, point.py, point.color.color);
 			link_points(data, c, l, &point);
 			c++;
 		}
