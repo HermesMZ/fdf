@@ -9,3 +9,5 @@ implémenter les translations / rotations / zoum in-out (recalcul et hooks)
 
 couleurs pour la profondeur
 
+
+zoom et depth a corriger.
