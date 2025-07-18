@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:07:09 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/18 16:08:53 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/19 00:53:22 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char *argv[])
 	t_mlx_data	*data;
 
 	if (argc != 2)
-		return (ft_putstr_fd("Error: Select a map\n", 2), 1);
+		return (ft_putstr_fd("Error: Select one map\n", 2), 1);
 	data = init_data();
 	if (!data)
 		return (ft_putstr_fd("Error: Failed data init\n", 2), 1);
@@ -51,7 +51,6 @@ int	main(int argc, char *argv[])
 		end_display(data);
 		return (ft_putstr_fd("Error: Failed to launch FdF window\n", 2), 1);
 	}
-
 	draw_map(data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, key_press, data);
 	mlx_hook(data->win_ptr, KeyRelease, KeyReleaseMask, key_release, data);

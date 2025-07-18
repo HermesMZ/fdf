@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:05:08 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/18 19:00:45 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/19 00:36:47 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ typedef struct s_draw
 	int	sx;
 	int	sy;
 	int	err;
+	int	current_x;
+	int	current_y;
 }	t_draw;
 
 typedef struct s_point
@@ -109,9 +111,9 @@ typedef struct s_mlx_data
 	t_map		*map;
 	t_my_img	*img;
 	t_keys		keys;
-	int			zoom;
-	int			offset_x;
-	int			offset_y;
+	double		zoom;
+	double		offset_x;
+	double		offset_y;
 	double		angle_x;
 	double		angle_y;
 	double		angle_z;

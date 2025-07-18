@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_view.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 18:12:49 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/18 19:08:39 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/19 01:47:17 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static void	calculate_and_set_offset(t_mlx_data *data, t_bounds *bounds)
 
 	center_x = (bounds->min_x + bounds->max_x) / 2.0;
 	center_y = (bounds->min_y + bounds->max_y) / 2.0;
-	data->offset_x = (int)((data->width / 2.0) - center_x);
-	data->offset_y = (int)((data->height / 2.0) - center_y);
+	data->offset_x = ((data->width / 2.0) - center_x);
+	data->offset_y = ((data->height / 2.0) - center_y);
 }
 
 void	setup_view(t_mlx_data *data)
@@ -45,6 +45,6 @@ void	setup_view(t_mlx_data *data)
 	data->zoom = calculate_initial_zoom(data, &bounds);
 	find_projected_minmax(data, &bounds);
 	calculate_and_set_offset(data, &bounds);
-	printf("max %d min %d z_size %d depth %f zoom %d\n", data->map->max_z,
-		data->map->min_z, z_size, data->depth, data->zoom);
+	printf("max %d min %d z_size %d depth %f zoom %f\n", data->map->max_z,
+		data->map->min_z, 00000, data->depth, data->zoom);
 }

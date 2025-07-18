@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:18:19 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/18 17:10:35 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/19 01:45:43 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ static void	hard_values(t_mlx_data *data)
 	data->map->max_z = -2147483648;
 	data->mlx_ptr = NULL;
 	data->win_ptr = NULL;
-	data->zoom = 1;
+	data->zoom = 1.0;
 	data->offset_x = 0;
 	data->offset_y = 0;
-	data->angle_x = -0.005;
-	data->angle_y = -0.01;
-	data->angle_z = 0.775;
-	data->depth = 1;
+	data->angle_x = 0.2860;
+	data->angle_y = 0.0060;
+	data->angle_z = 0.5410;
+	data->depth = 1.0;
 	data->keys = (t_keys){0};
 	data->keys.first_draw = 1;
 }

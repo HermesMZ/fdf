@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 02:12:56 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/18 15:46:00 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/19 01:24:46 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	my_mlx_pixel_put(t_mlx_data *data, int x, int y, int color)
 	*((unsigned int *)(offset + data->img->addr)) = color;
 }
 
-static void	move_draw(t_draw *draw, t_point *p1)
+static void	move_draw(t_draw *draw, int *current_x, int *current_y)
 {
 	int	err_check;
 
@@ -30,12 +30,12 @@ static void	move_draw(t_draw *draw, t_point *p1)
 	if (err_check > -draw->dy)
 	{
 		draw->err -= draw->dy;
-		p1->px += draw->sx;
+		*current_x += draw->sx;
 	}
 	if (err_check < draw->dx)
 	{
 		draw->err += draw->dx;
-		p1->py += draw->sy;
+		*current_y += draw->sy;
 	}
 }
 
@@ -47,6 +47,8 @@ void	draw_line(t_mlx_data *data, t_point *p1, t_point *p2)
 	double			total_steps;
 	int				step_count;
 
+	draw.current_x = p1->px;
+	draw.current_y = p1->py;
 	draw.dx = abs(p2->px - p1->px);
 	draw.dy = abs(p2->py - p1->py);
 	if (p1->px < p2->px)
@@ -64,10 +66,10 @@ void	draw_line(t_mlx_data *data, t_point *p1, t_point *p2)
 	{
 		ratio = (double)step_count / total_steps;
 		color = interpolate_color(p1->color, p2->color, ratio);
-		my_mlx_pixel_put(data, p1->px, p1->py, color);
-		if (p1->px == p2->px && p1->py == p2->py)
+		my_mlx_pixel_put(data, draw.current_x, draw.current_y, color);
+		if (draw.current_x == p2->px && draw.current_y == p2->py)
 			break ;
-		move_draw(&draw, p1);
+		move_draw(&draw, &draw.current_x, &draw.current_y);
 		step_count++;
 	}
 }
@@ -99,4 +101,7 @@ void	draw_map(t_mlx_data *data)
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->img, 0, 0);
 	draw_commands(data);
+	printf("offset x %f offset y %f\n", data->offset_x, data->offset_y);
+	printf("x %f y %f z %f\n", data->angle_x, data->angle_y, data->angle_z);
+	printf("depth %f zoom %f\n\n", data->depth, data->zoom);
 }

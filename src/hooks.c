@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:59:59 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/18 16:14:12 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/19 01:33:52 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@ static void	_handle_zoom_keys(t_mlx_data *data)
 	if (data->keys.zoom_in)
 	{
 		if (data->zoom < 100)
-			data->zoom += 1;
+			data->zoom += 0.01;
 	}
 	if (data->keys.zoom_out)
 	{
-		if (data->zoom > -100)
-			data->zoom -= 1;
+		if (data->zoom > 1)
+			data->zoom -= 0.01;
 	}
 	if (data->keys.depth_in)
 	{
-		if (data->depth < 2.0)
+		if (data->depth < 5.0)
 			data->depth += 0.01;
 	}
 	if (data->keys.depth_out)
 	{
-		if (data->depth > -2.0)
+		if (data->depth > -5.0)
 			data->depth -= 0.01;
 	}
 }
@@ -39,25 +39,25 @@ static void	_handle_zoom_keys(t_mlx_data *data)
 static void	_handle_move_keys(t_mlx_data *data)
 {
 	if (data->keys.angle_x_plus)
-		data->angle_x += 0.01;
+		data->angle_x += 0.001;
 	if (data->keys.angle_x_minus)
-		data->angle_x -= 0.01;
+		data->angle_x -= 0.001;
 	if (data->keys.angle_y_plus)
-		data->angle_y += 0.01;
+		data->angle_y += 0.001;
 	if (data->keys.angle_y_minus)
-		data->angle_y -= 0.01;
+		data->angle_y -= 0.001;
 	if (data->keys.angle_z_plus)
-		data->angle_z += 0.01;
+		data->angle_z += 0.001;
 	if (data->keys.angle_z_minus)
-		data->angle_z -= 0.01;
+		data->angle_z -= 0.001;
 	if (data->keys.move_up)
-		data->offset_y -= 10;
+		data->offset_y -= 1;
 	if (data->keys.move_down)
-		data->offset_y += 10;
+		data->offset_y += 1;
 	if (data->keys.move_left)
-		data->offset_x -= 10;
+		data->offset_x -= 1;
 	if (data->keys.move_right)
-		data->offset_x += 10;
+		data->offset_x += 1;
 }
 
 int	main_loop_update(t_mlx_data *data)
