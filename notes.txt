@@ -1,13 +1,4 @@
 clear && valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all --suppressions=./mlx.supp --suppressions=./mlx.supp ./fdf test_maps/10-2.fdf
 
-To do list :
-itérer sur l'array pour calculer les coordonnées de chaque point.
-	formules de projection. Isométrique / sphérique
-relier les points.
-
-implémenter les translations / rotations / zoum in-out (recalcul et hooks)
-
 couleurs pour la profondeur
 
-
-zoom et depth a corriger.

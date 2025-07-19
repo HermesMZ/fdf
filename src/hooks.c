@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:59:59 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/19 01:33:52 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/19 15:07:00 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static void	_handle_zoom_keys(t_mlx_data *data)
 	if (data->keys.depth_in)
 	{
 		if (data->depth < 5.0)
-			data->depth += 0.01;
+			data->depth += 0.001;
 	}
 	if (data->keys.depth_out)
 	{
 		if (data->depth > -5.0)
-			data->depth -= 0.01;
+			data->depth -= 0.001;
 	}
 }
 

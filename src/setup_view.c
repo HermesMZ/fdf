@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_view.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 18:12:49 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/19 01:47:17 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/19 17:02:38 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	setup_view(t_mlx_data *data)
 
 	z_size = data->map->max_z - data->map->min_z;
 	if (z_size)
-		data->depth = pow(z_size, -1);
+		data->depth = pow(z_size, -0.5);
 	bounds = (t_bounds){0};
 	find_projected_minmax(data, &bounds);
 	data->zoom = calculate_initial_zoom(data, &bounds);

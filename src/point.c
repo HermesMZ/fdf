@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   point.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 04:27:15 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/19 01:18:52 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/19 17:27:28 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ t_point	rotate(t_mlx_data *data, t_point p)
 	double	prev_z;
 
 	p.z *= data->depth;
-	prev_x = p.x;
-	prev_y = p.y;
-	prev_z = p.z;
+	prev_x = p.x - data->map->centre.x;
+	prev_y = p.y - data->map->centre.y;
+	prev_z = p.z - data->map->centre.z;
 	p.y = prev_y * cos(data->angle_x) - prev_z * sin(data->angle_x);
 	p.z = prev_y * sin(data->angle_x) + prev_z * cos(data->angle_x);
 	prev_y = p.y;
@@ -37,8 +37,8 @@ t_point	rotate(t_mlx_data *data, t_point p)
 
 t_point	project(t_mlx_data *data, t_point p)
 {
-	p.px = (int)(p.x * data->zoom + data ->offset_x);
-	p.py = (int)(p.y * data->zoom + data->offset_y
+	p.px = (int)(p.x * data->zoom + data ->offset_x) + data->map->centre.x;
+	p.py = (int)(p.y * data->zoom + data->offset_y + data->map->centre.y
 			- (p.z * data->zoom));
 	return (p);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:05:08 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/19 00:36:47 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/19 17:28:19 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,25 @@
 # include <fcntl.h>
 # include <x86_64-linux-gnu/bits/fcntl-linux.h>
 # include "libft.h"
+# include <stdbool.h>
 
 typedef struct s_keys
 {
-	int	first_draw;
-	int	angle_x_plus;
-	int	angle_x_minus;
-	int	angle_y_plus;
-	int	angle_y_minus;
-	int	angle_z_plus;
-	int	angle_z_minus;
-	int	zoom_in;
-	int	zoom_out;
-	int	move_up;
-	int	move_down;
-	int	move_left;
-	int	move_right;
-	int	depth_in;
-	int	depth_out;
+	bool	first_draw;
+	int		angle_x_plus;
+	int		angle_x_minus;
+	int		angle_y_plus;
+	int		angle_y_minus;
+	int		angle_z_plus;
+	int		angle_z_minus;
+	int		zoom_in;
+	int		zoom_out;
+	int		move_up;
+	int		move_down;
+	int		move_left;
+	int		move_right;
+	int		depth_in;
+	int		depth_out;
 }	t_keys;
 
 typedef struct s_col
@@ -84,13 +85,21 @@ typedef struct s_point
 	t_col			color;
 }	t_point;
 
+typedef struct s_rotate_center
+{
+	double	x;
+	double	y;
+	double	z;
+}	t_centre;
+
 typedef struct s_map
 {
-	int		lines;
-	int		columns;
-	t_point	**points;
-	int		min_z;
-	int		max_z;
+	int			lines;
+	int			columns;
+	t_point		**points;
+	int			min_z;
+	int			max_z;
+	t_centre	centre;
 }	t_map;
 
 typedef struct s_my_img
@@ -118,6 +127,7 @@ typedef struct s_mlx_data
 	double		angle_y;
 	double		angle_z;
 	double		depth;
+	bool		colorized;
 }	t_mlx_data;
 
 // keys
@@ -132,7 +142,6 @@ int			check_extract_map(t_mlx_data *data, char *file_path);
 
 // draw
 void		draw_map(t_mlx_data *data);
-// void		my_mlx_pixel_put(t_mlx_data *data, int x, int y, int color);
 void		draw_line(t_mlx_data *data, t_point *p1, t_point *p2);
 
 // point

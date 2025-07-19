@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:09:12 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/18 15:39:48 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/19 17:24:26 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static int	process_single_point(t_mlx_data *data, int line_index, int j,
 	t_point	new_point;
 	char	**splitted;
 
-	new_point.color.color = 0xFFFFFF;
 	splitted = ft_split(point, ',');
 	if (!splitted)
 		return (ft_putstr_fd("Error: z / color.\n", 2), 1);
 	new_point.x = (double)j;
 	new_point.y = (double)line_index;
 	new_point.z = ft_atoi(splitted[0]);
+	new_point.color.color = 0xFFFFFF;
 	new_point.px = 0;
 	new_point.py = 0;
 	if (splitted[1])
@@ -118,5 +118,8 @@ int	check_extract_map(t_mlx_data *data, char *file_path)
 		return (1);
 	}
 	find_min_max_z(data);
+	data->map->centre.x = data->map->columns / 2;
+	data->map->centre.y = data->map->lines / 2;
+	data->map->centre.z = (data->map->max_z - data->map->min_z) / 2;
 	return (0);
 }
