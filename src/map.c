@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:09:12 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/19 17:24:26 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/20 18:22:45 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,8 @@ int	check_extract_map(t_mlx_data *data, char *file_path)
 		return (1);
 	}
 	find_min_max_z(data);
-	data->map->centre.x = data->map->columns / 2;
-	data->map->centre.y = data->map->lines / 2;
-	data->map->centre.z = (data->map->max_z - data->map->min_z) / 2;
+	data->map->centre.x = (data->map->columns - 1) / 2;
+	data->map->centre.y = (data->map->lines - 1) / 2;
+	data->map->centre.z = (data->map->max_z - data->map->min_z) / 2.0;
 	return (0);
 }

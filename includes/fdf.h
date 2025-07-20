@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:05:08 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/19 17:28:19 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/20 17:38:10 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,5 +172,6 @@ void		extract_rgb(t_col *col, int c);
 
 int			interpolate_color(t_col c1, t_col c2, double ratio);
 
+int			launch(t_mlx_data *data);
 
 #endif /*FDF_H*/

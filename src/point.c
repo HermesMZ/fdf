@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   point.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 04:27:15 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/19 17:27:28 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/20 19:10:37 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+// rotate 3D centre
 t_point	rotate(t_mlx_data *data, t_point p)
 {
 	double	prev_x;
@@ -37,8 +38,8 @@ t_point	rotate(t_mlx_data *data, t_point p)
 
 t_point	project(t_mlx_data *data, t_point p)
 {
-	p.px = (int)(p.x * data->zoom + data ->offset_x) + data->map->centre.x;
-	p.py = (int)(p.y * data->zoom + data->offset_y + data->map->centre.y
+	p.px = (int)(p.x * data->zoom + data ->offset_x) + (int)data->map->centre.x;
+	p.py = (int)(p.y * data->zoom + data->offset_y + (int)data->map->centre.y
 			- (p.z * data->zoom));
 	return (p);
 }
