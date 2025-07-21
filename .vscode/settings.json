@@ -3,6 +3,7 @@
 		"mlx.h": "c",
 		"fdf.h": "c",
 		"fcntl.h": "c",
-		"functional": "c"
+		"functional": "c",
+		"random": "c"
 	}
 }

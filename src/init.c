@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:18:19 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/21 10:08:22 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/21 11:54:19 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	hard_values(t_mlx_data *data)
 	data->depth = 1.0;
 	data->keys = (t_keys){0};
 	data->keys.first_draw = 1;
-	data->pallette = (t_pallette){0};
+	data->colorized = 0;
 }
 
 t_mlx_data	*init_data(void)

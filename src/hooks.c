@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:59:59 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/19 15:07:00 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/21 13:50:06 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,21 @@ static void	_handle_move_keys(t_mlx_data *data)
 		data->offset_x -= 1;
 	if (data->keys.move_right)
 		data->offset_x += 1;
+}
+
+int	colorize(t_mlx_data *data)
+{
+	if (!data->colorized)
+	{
+		generate_gradient_palette(data);
+		if (!data->palette.colors)
+			return (1);
+		update_colors(data);
+		draw_map(data);
+		free(data->palette.colors);
+		data->colorized = 1;
+	}
+	return (0);
 }
 
 int	main_loop_update(t_mlx_data *data)

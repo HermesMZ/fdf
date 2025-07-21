@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:09:12 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/20 19:52:40 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/21 11:58:44 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ static int	process_single_point(t_mlx_data *data, int line_index, int j,
 	new_point.px = 0;
 	new_point.py = 0;
 	if (splitted[1])
+	{
 		new_point.color.color = ft_hextoi(splitted[1]);
+		if (new_point.color.color != 0xFFFFFF)
+			data->colorized = 1;
+	}
 	extract_rgb(&new_point.color, new_point.color.color);
 	free_splitted(splitted);
 	data->map->points[line_index][j] = new_point;

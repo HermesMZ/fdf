@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 17:55:34 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/17 18:39:10 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/21 11:39:43 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	key_press(int keysym, t_mlx_data *data)
 {
 	if (keysym == XK_Escape)
 		end_display(data);
+	if (keysym == 32)
+		colorize(data);
 	if (keysym == 121)
 		data->keys.zoom_out = 1;
 	if (keysym == 104)

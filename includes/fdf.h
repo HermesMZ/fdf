@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:05:08 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/21 10:07:35 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/21 13:50:17 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,16 +111,11 @@ typedef struct s_my_img
 	int		endian;
 }	t_my_img;
 
-typedef struct s_pallette
+typedef struct s_palette
 {
-	unsigned int	*colors;
-	int				start_r;
-	int				start_v;
-	int				start_b;
-	int				end_r;
-	int				end_v;
-	int				end_b;
-}	t_pallette;
+	t_col			*colors;
+	int				len;
+}	t_palette;
 
 typedef struct s_mlx_data
 {
@@ -139,7 +134,7 @@ typedef struct s_mlx_data
 	double		angle_z;
 	double		depth;
 	bool		colorized;
-	t_pallette	pallette;
+	t_palette	palette;
 }	t_mlx_data;
 
 // keys
@@ -167,7 +162,7 @@ t_point		**create_map(int lines, int col);
 void		setup_view(t_mlx_data *data);
 
 // utils
-void		print_map(t_mlx_data *data);
+void		debug_print_map(t_mlx_data *data);
 void		free_map(t_point **tab);
 void		close_gnl_fd(int fd);
 int			end_display(t_mlx_data *data);
@@ -183,6 +178,11 @@ void		draw_commands(t_mlx_data *data);
 void		extract_rgb(t_col *col, int c);
 
 int			interpolate_color(t_col c1, t_col c2, double ratio);
+void		generate_gradient_palette(t_mlx_data *data);
+void		update_colors(t_mlx_data *data);
+
+int			colorize(t_mlx_data *data);
+void		debug_palette(t_mlx_data *data);
 
 int			launch(t_mlx_data *data);
 

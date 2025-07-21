@@ -13,6 +13,7 @@ LIBMLX = $(LIBMLX_DIR)/libmlx_Linux.a
 
 SRCS = \
 	main.c \
+	debug_utils.c \
 	colors.c \
 	count.c \
 	draw.c \
