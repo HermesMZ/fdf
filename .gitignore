@@ -3,5 +3,8 @@ objs/
 fdf
 libft/libft.a
 minilibx-linux/
-ft.fdf.pdf/
+fr.fdf.pdf
 callgrind.*
+notes.txt
+test.txt
+test_maps/

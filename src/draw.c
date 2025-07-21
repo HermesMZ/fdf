@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 02:12:56 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/19 01:24:46 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/21 17:13:00 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,9 @@ static void	move_draw(t_draw *draw, int *current_x, int *current_y)
 	}
 }
 
-void	draw_line(t_mlx_data *data, t_point *p1, t_point *p2)
+static t_draw	_draw_struct(t_point *p1, t_point *p2)
 {
 	t_draw			draw;
-	unsigned int	color;
-	double			ratio;
-	double			total_steps;
-	int				step_count;
 
 	draw.current_x = p1->px;
 	draw.current_y = p1->py;
@@ -60,6 +56,18 @@ void	draw_line(t_mlx_data *data, t_point *p1, t_point *p2)
 	else
 		draw.sy = -1;
 	draw.err = draw.dx - draw.dy;
+	return (draw);
+}
+
+void	draw_line(t_mlx_data *data, t_point *p1, t_point *p2)
+{
+	t_draw			draw;
+	unsigned int	color;
+	double			ratio;
+	double			total_steps;
+	int				step_count;
+
+	draw = _draw_struct(p1, p2);
 	total_steps = sqrt(pow(draw.dx, 2) + pow(draw.dy, 2));
 	step_count = 0;
 	while (1)
@@ -101,7 +109,4 @@ void	draw_map(t_mlx_data *data)
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->img, 0, 0);
 	draw_commands(data);
-	printf("offset x %f offset y %f\n", data->offset_x, data->offset_y);
-	printf("x %f y %f z %f\n", data->angle_x, data->angle_y, data->angle_z);
-	printf("depth %f zoom %f\n\n", data->depth, data->zoom);
 }
