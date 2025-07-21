@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:05:08 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/20 17:38:10 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/21 10:07:35 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,17 @@ typedef struct s_my_img
 	int		endian;
 }	t_my_img;
 
+typedef struct s_pallette
+{
+	unsigned int	*colors;
+	int				start_r;
+	int				start_v;
+	int				start_b;
+	int				end_r;
+	int				end_v;
+	int				end_b;
+}	t_pallette;
+
 typedef struct s_mlx_data
 {
 	void		*mlx_ptr;
@@ -128,6 +139,7 @@ typedef struct s_mlx_data
 	double		angle_z;
 	double		depth;
 	bool		colorized;
+	t_pallette	pallette;
 }	t_mlx_data;
 
 // keys
