@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:20:24 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/21 15:55:30 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/21 21:44:10 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,10 @@ int	end_display(t_mlx_data *data)
 		free_map(data->map->points);
 		free(data->map);
 	}
-	if (data->img && data->img->img)
-	{
+	if (data->img->img)
 		mlx_destroy_image(data->mlx_ptr, data->img->img);
+	if (data->img)
 		free(data->img);
-	}
 	if (data->win_ptr)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	if (data->mlx_ptr)

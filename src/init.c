@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:18:19 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/21 15:54:47 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/21 21:41:05 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_mlx_data	*init_data(void)
 	data->img = malloc(sizeof(t_my_img));
 	if (!data->img)
 		return (free(data), NULL);
+	data->img->img = NULL;
 	data->map = malloc(sizeof(t_map));
 	if (!data->map)
 	{
