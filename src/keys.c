@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 17:55:34 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/21 11:39:43 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/21 14:43:52 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static int	key_press_2(int keysym, t_mlx_data *data)
 		data->keys.depth_in = 1;
 	if (keysym == 101)
 		data->keys.depth_out = 1;
+	if (keysym == 65505)
+		data->keys.turbo = 1;
 	return (0);
 }
 
@@ -70,6 +72,8 @@ static int	key_release_2(int keysym, t_mlx_data *data)
 		data->keys.depth_in = 0;
 	if (keysym == 101)
 		data->keys.depth_out = 0;
+	if (keysym == 65505)
+		data->keys.turbo = 0;
 	return (0);
 }
 

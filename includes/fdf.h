@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:05:08 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/21 13:50:17 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/21 14:39:08 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_keys
 	int		move_right;
 	int		depth_in;
 	int		depth_out;
+	int		turbo;
 }	t_keys;
 
 typedef struct s_col

@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 19:33:15 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/21 14:01:10 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/21 14:17:07 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void	generate_gradient_palette(t_mlx_data *data)
 	}
 	setup_palette(data, len);
 	fill_palette(data, len);
+	debug_palette(data);
 }
 
 void	update_colors(t_mlx_data *data)

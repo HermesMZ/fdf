@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 13:44:24 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/21 13:50:06 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/21 14:31:53 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	debug_print_map(t_mlx_data *data)
 		c = 0;
 		while (c < data->map->columns)
 		{
-			ft_printf("%-2d ", data->map->points[l][c]);
+			ft_printf("%4d,%d ", (int)data->map->points[l][c].z,
+				data->map->points[l][c].color.color);
 			c++;
 		}
 		ft_printf("\n");
