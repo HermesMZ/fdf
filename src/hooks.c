@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:59:59 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/21 15:30:05 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/21 16:08:53 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,7 @@ int	colorize(t_mlx_data *data)
 		generate_gradient_palette(data);
 		if (!data->palette.colors)
 			return (1);
-		update_colors(data);
 		draw_map(data);
-		free(data->palette.colors);
 		data->colorized = 1;
 	}
 	return (0);
@@ -91,4 +89,3 @@ int	main_loop_update(t_mlx_data *data)
 	data->keys.first_draw = 0;
 	return (0);
 }
-	// ft_printf("zoom %d\n", data->zoom);

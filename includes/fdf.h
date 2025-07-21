@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:05:08 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/21 14:39:08 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/21 16:08:01 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ typedef struct s_col
 	unsigned char	b;
 	unsigned int	color;
 }	t_col;
-
 
 typedef struct s_bounds
 {
@@ -180,7 +179,6 @@ void		extract_rgb(t_col *col, int c);
 
 int			interpolate_color(t_col c1, t_col c2, double ratio);
 void		generate_gradient_palette(t_mlx_data *data);
-void		update_colors(t_mlx_data *data);
 
 int			colorize(t_mlx_data *data);
 void		debug_palette(t_mlx_data *data);

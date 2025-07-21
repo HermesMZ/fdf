@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:20:24 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/21 13:48:59 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/21 15:55:30 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	end_display(t_mlx_data *data)
 		mlx_destroy_image(data->mlx_ptr, data->img->img);
 		free(data->img);
 	}
-	if (data->win_ptr != NULL)
+	if (data->win_ptr)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	if (data->mlx_ptr != NULL)
+	if (data->mlx_ptr)
 	{
 		mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr);

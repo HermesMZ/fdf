@@ -4,6 +4,7 @@
 		"fdf.h": "c",
 		"fcntl.h": "c",
 		"functional": "c",
-		"random": "c"
+		"random": "c",
+		"ranges": "c"
 	}
 }
