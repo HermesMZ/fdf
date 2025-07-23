@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 04:27:15 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/21 17:02:10 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/23 13:33:54 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ t_point	rotate(t_mlx_data *data, t_point p)
 
 t_point	project(t_mlx_data *data, t_point p)
 {
-	p.px = (int)(p.x * data->zoom + data ->offset_x) + (int)data->map->centre.x;
-	p.py = (int)(p.y * data->zoom + data->offset_y + (int)data->map->centre.y
-			- (p.z * data->zoom));
+	p.px = (int)(p.x * data->zoom + data->offset_x) + (int)data->map->centre.x;
+	p.py = (int)(p.y * data->zoom + data->offset_y) + (int)data->map->centre.y
+		- (p.z * data->zoom);
 	return (p);
 }
 

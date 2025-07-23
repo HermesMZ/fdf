@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:05:08 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/21 16:08:01 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/23 14:51:54 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,5 +184,8 @@ int			colorize(t_mlx_data *data);
 void		debug_palette(t_mlx_data *data);
 
 int			launch(t_mlx_data *data);
+
+void		debug_bounds(t_mlx_data *data);
+
 
 #endif /*FDF_H*/

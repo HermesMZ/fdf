@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:09:12 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/21 21:44:23 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/21 16:40:06 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	check_extract_map(t_mlx_data *data, char *file_path)
 	if (count_map_dimensions(data, file_path) == 1)
 	{
 		end_display(data);
-		return (ft_putstr_fd("Error: Failed count map.\n", 2), 1);
+		return (1);
 	}
 	data->map->points = create_map(data->map->lines, data->map->columns);
 	if (!data->map->points)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:18:19 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/21 21:41:05 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/22 20:05:17 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	hard_values(t_mlx_data *data)
 {
 	data->width = 1000;
-	data->height = 500;
+	data->height = 1000;
 	data->map->points = NULL;
 	data->map->columns = 0;
 	data->map->lines = 0;
@@ -23,9 +23,9 @@ static void	hard_values(t_mlx_data *data)
 	data->map->max_z = -2147483648;
 	data->mlx_ptr = NULL;
 	data->win_ptr = NULL;
-	data->zoom = 1.0;
-	data->offset_x = 0;
-	data->offset_y = 0;
+	data->zoom = 0.0;
+	data->offset_x = 0.0;
+	data->offset_y = 0.0;
 	data->angle_x = 0.2860;
 	data->angle_y = 0.0060;
 	data->angle_z = 0.5410;
@@ -45,7 +45,6 @@ t_mlx_data	*init_data(void)
 	data->img = malloc(sizeof(t_my_img));
 	if (!data->img)
 		return (free(data), NULL);
-	data->img->img = NULL;
 	data->map = malloc(sizeof(t_map));
 	if (!data->map)
 	{

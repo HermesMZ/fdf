@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 20:44:35 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/16 20:47:51 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/23 14:52:29 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void	draw_commands_2(t_mlx_data *data, int x, int y, int line_height)
 		"MoveH: A (Left) / D (Right)");
 	y += line_height;
 	mlx_string_put(data->mlx_ptr, data->win_ptr, x, y, 0xFF0000,
-		"Depth: Q (In) / E (Out)");
+		"Depth: Q (+) / E (-)");
+	y += line_height;
+	mlx_string_put(data->mlx_ptr, data->win_ptr, x, y, 0xFF0000,
+		"Colorize : SPACE");
 	y += line_height;
 	mlx_string_put(data->mlx_ptr, data->win_ptr, x, y, 0xFF0000,
 		"Quit: ESC");
@@ -41,7 +44,7 @@ void	draw_commands(t_mlx_data *data)
 		"--- FdF Commands ---");
 	y += line_height;
 	mlx_string_put(data->mlx_ptr, data->win_ptr, x, y, 0xFF0000,
-		"Zoom: H (In) / Y (Out)");
+		"Zoom: H (+) / Y (-)");
 	y += line_height;
 	mlx_string_put(data->mlx_ptr, data->win_ptr, x, y, 0xFF0000,
 		"Rot. X: U (+) / J (-)");

@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 13:44:24 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/21 16:09:13 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/23 13:40:44 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	debug_palette(t_mlx_data *data)
 	i = 0;
 	while (i < data->palette.len)
 	{
-		printf("t %d, r %d, g %d, b %d = %d\n",
+		ft_printf("t %d, r %d, g %d, b %d = %d\n",
 			data->palette.colors[i].t,
 			data->palette.colors[i].r,
 			data->palette.colors[i].g,
