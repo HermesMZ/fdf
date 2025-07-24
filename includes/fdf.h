@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 18:05:08 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/23 14:51:54 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/24 16:00:13 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,22 @@
 typedef struct s_keys
 {
 	bool	first_draw;
-	int		angle_x_plus;
-	int		angle_x_minus;
-	int		angle_y_plus;
-	int		angle_y_minus;
-	int		angle_z_plus;
-	int		angle_z_minus;
-	int		zoom_in;
-	int		zoom_out;
-	int		move_up;
-	int		move_down;
-	int		move_left;
-	int		move_right;
-	int		depth_in;
-	int		depth_out;
-	int		turbo;
+	bool	angle_x_plus;
+	bool	angle_x_minus;
+	bool	angle_y_plus;
+	bool	angle_y_minus;
+	bool	angle_z_plus;
+	bool	angle_z_minus;
+	bool	zoom_in;
+	bool	zoom_out;
+	bool	move_up;
+	bool	move_down;
+	bool	move_left;
+	bool	move_right;
+	bool	depth_in;
+	bool	depth_out;
+	bool	turbo;
+	int		view;
 }	t_keys;
 
 typedef struct s_col
@@ -61,7 +62,7 @@ typedef struct s_bounds
 	double	max_x;
 	double	min_y;
 	double	max_y;
-	int		first_point_processed;
+	bool	first_point_processed;
 }	t_bounds;
 
 typedef struct s_draw
@@ -153,13 +154,16 @@ void		draw_line(t_mlx_data *data, t_point *p1, t_point *p2);
 
 // point
 void		link_points(t_mlx_data *data, int c, int l, t_point *point);
-t_point		project(t_mlx_data *data, t_point p);
-t_point		rotate(t_mlx_data *data, t_point p);
+t_point		project_iso(t_mlx_data *data, t_point p);
+void		rotate(t_mlx_data *data, t_point *p);
 
 // init
 t_mlx_data	*init_data(void);
 t_point		**create_map(int lines, int col);
 void		setup_view(t_mlx_data *data);
+void		setup_ortho_top_view(t_mlx_data *data);
+void		setup_ortho_front_view(t_mlx_data *data);
+void		setup_ortho_side_view(t_mlx_data *data);
 
 // utils
 void		debug_print_map(t_mlx_data *data);
@@ -186,6 +190,15 @@ void		debug_palette(t_mlx_data *data);
 int			launch(t_mlx_data *data);
 
 void		debug_bounds(t_mlx_data *data);
+void		draw_center_cross(t_mlx_data *data);
+void		my_mlx_pixel_put(t_mlx_data *data, int x, int y, int color);
 
+t_point		project_ortho_top(t_mlx_data *data, t_point p);
+t_point		project_ortho_front(t_mlx_data *data, t_point p);
+t_point		project_ortho_side(t_mlx_data *data, t_point p);
+t_point		project_iso(t_mlx_data *data, t_point p);
+t_point		project(t_mlx_data *data, t_point p);
+
+void		calculate_and_set_offset(t_mlx_data *data, t_bounds *bounds);
 
 #endif /*FDF_H*/

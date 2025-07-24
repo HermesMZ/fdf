@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:18:19 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/22 20:05:17 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/24 15:54:18 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	hard_values(t_mlx_data *data)
 	data->map->max_z = -2147483648;
 	data->mlx_ptr = NULL;
 	data->win_ptr = NULL;
-	data->zoom = 0.0;
+	data->zoom = 1.0;
 	data->offset_x = 0.0;
 	data->offset_y = 0.0;
 	data->angle_x = 0.2860;
@@ -31,6 +31,7 @@ static void	hard_values(t_mlx_data *data)
 	data->angle_z = 0.5410;
 	data->depth = 1.0;
 	data->keys = (t_keys){0};
+	data->keys.view = 0;
 	data->keys.first_draw = 1;
 	data->colorized = 0;
 }

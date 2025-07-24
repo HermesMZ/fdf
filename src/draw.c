@@ -6,13 +6,13 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 02:12:56 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/23 13:34:44 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/24 14:08:12 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	my_mlx_pixel_put(t_mlx_data *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_mlx_data *data, int x, int y, int color)
 {
 	int	offset;
 
@@ -99,7 +99,6 @@ void	draw_map(t_mlx_data *data)
 			point.y = (double)l;
 			point.z = (double)data->map->points[l][c].z;
 			point.color = data->map->points[l][c].color;
-			point = rotate(data, point);
 			point = project(data, point);
 			my_mlx_pixel_put(data, point.px, point.py, point.color.color);
 			link_points(data, c, l, &point);

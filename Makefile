@@ -13,7 +13,8 @@ LIBMLX = $(LIBMLX_DIR)/libmlx_Linux.a
 
 SRCS = \
 	main.c \
-	palette.c \
+	project.c \
+	rainbow.c \
 	debug_utils.c \
 	colors.c \
 	count.c \
@@ -51,6 +52,7 @@ $(LIBFT):
 
 $(LIBMLX):
 	@echo "Construction de libmlx.a..."
+	@git clone git@github.com:42paris/minilibx-linux.git
 	@$(MAKE) -C $(LIBMLX_DIR)	
 
 clean:

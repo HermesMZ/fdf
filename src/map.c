@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 17:09:12 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/21 16:40:06 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/24 14:10:51 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,22 +111,19 @@ static void	find_min_max_z(t_mlx_data *data)
 int	check_extract_map(t_mlx_data *data, char *file_path)
 {
 	if (count_map_dimensions(data, file_path) == 1)
-	{
-		end_display(data);
-		return (1);
-	}
+		return (end_display(data), 1);
 	data->map->points = create_map(data->map->lines, data->map->columns);
 	if (!data->map->points)
-		return (ft_putstr_fd("Error: Failed to allocate map memory.\n", 2), 1);
+		return (end_display(data), 1);
 	if (fill_map_data(data, file_path) == 1)
 	{
 		free_map(data->map->points);
 		data->map->points = NULL;
-		return (1);
+		return (end_display(data), 1);
 	}
 	find_min_max_z(data);
 	data->map->centre.x = (data->map->columns - 1) / 2;
 	data->map->centre.y = (data->map->lines - 1) / 2;
-	data->map->centre.z = (data->map->max_z - data->map->min_z) / 2.0;
+	data->map->centre.z = (data->map->max_z - data->map->min_z) / 2;
 	return (0);
 }

@@ -6,11 +6,39 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 17:55:34 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/21 14:43:52 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/24 16:00:06 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static int	key_press_views(int keysym, t_mlx_data *data)
+{
+	t_bounds	bounds;
+
+	if (keysym == 122)
+	{
+		data->keys.view = 1;
+		setup_ortho_top_view(data);
+	}
+	if (keysym == 120)
+	{
+		data->keys.view = 2;
+		setup_ortho_front_view(data);
+	}
+	if (keysym == 99)
+	{
+		data->keys.view = 3;
+		setup_ortho_side_view(data);
+	}
+	if (keysym == 118)
+	{
+		bounds = (t_bounds){0};
+		calculate_and_set_offset(data, &bounds);
+		data->keys.view = 4;
+	}
+	return (0);
+}
 
 static int	key_press_2(int keysym, t_mlx_data *data)
 {
@@ -54,7 +82,7 @@ int	key_press(int keysym, t_mlx_data *data)
 	if (keysym == 108)
 		data->keys.angle_z_minus = 1;
 	key_press_2(keysym, data);
-	ft_printf("The %d key has been pressed\n", keysym);
+	key_press_views(keysym, data);
 	return (0);
 }
 
@@ -74,6 +102,8 @@ static int	key_release_2(int keysym, t_mlx_data *data)
 		data->keys.depth_out = 0;
 	if (keysym == 65505)
 		data->keys.turbo = 0;
+	if (keysym == 118)
+		data->keys.view = 0;
 	return (0);
 }
 
@@ -96,6 +126,5 @@ int	key_release(int keysym, t_mlx_data *data)
 	if (keysym == 108)
 		data->keys.angle_z_minus = 0;
 	key_release_2(keysym, data);
-	ft_printf("The %d key has been released\n\n", keysym);
 	return (0);
 }

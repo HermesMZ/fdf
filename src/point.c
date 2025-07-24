@@ -6,42 +6,24 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 04:27:15 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/23 13:33:54 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/24 15:14:13 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// rotate 3D centre
-t_point	rotate(t_mlx_data *data, t_point p)
-{
-	double	prev_x;
-	double	prev_y;
-	double	prev_z;
-
-	p.z *= data->depth;
-	prev_x = p.x - data->map->centre.x;
-	prev_y = p.y - data->map->centre.y;
-	prev_z = p.z - data->map->centre.z;
-	p.y = prev_y * cos(data->angle_x) - prev_z * sin(data->angle_x);
-	p.z = prev_y * sin(data->angle_x) + prev_z * cos(data->angle_x);
-	prev_y = p.y;
-	prev_z = p.z;
-	p.x = prev_x * cos(data->angle_y) + prev_z * sin(data->angle_y);
-	p.z = -prev_x * sin(data->angle_y) + prev_z * cos(data->angle_y);
-	prev_x = p.x;
-	prev_z = p.z;
-	p.x = prev_x * cos(data->angle_z) - prev_y * sin(data->angle_z);
-	p.y = prev_x * sin(data->angle_z) + prev_y * cos(data->angle_z);
-	return (p);
-}
-
 t_point	project(t_mlx_data *data, t_point p)
 {
-	p.px = (int)(p.x * data->zoom + data->offset_x) + (int)data->map->centre.x;
-	p.py = (int)(p.y * data->zoom + data->offset_y) + (int)data->map->centre.y
-		- (p.z * data->zoom);
-	return (p);
+	if (data->keys.view == 1)
+		return (project_ortho_top(data, p));
+	else if (data->keys.view == 2)
+		return (project_ortho_front(data, p));
+	else if (data->keys.view == 3)
+		return (project_ortho_side(data, p));
+	else if (data->keys.view == 4)
+		return (project_iso(data, p));
+	else
+		return (project_iso(data, p));
 }
 
 static void	_column(t_mlx_data *data, int c, int l, t_point *point)
@@ -56,7 +38,6 @@ static void	_column(t_mlx_data *data, int c, int l, t_point *point)
 		point_right.y = (double)l;
 		point_right.z = (double)data->map->points[l][c + 1].z;
 		point_right.color = data->map->points[l][c + 1].color;
-		point_right = rotate(data, point_right);
 		point_right = project(data, point_right);
 		draw_line(data, &point_tmp, &point_right);
 	}
@@ -74,7 +55,6 @@ static void	_line(t_mlx_data *data, int c, int l, t_point *point)
 		point_down.y = (double)(l + 1);
 		point_down.z = (double)data->map->points[l + 1][c].z;
 		point_down.color = data->map->points[l + 1][c].color;
-		point_down = rotate(data, point_down);
 		point_down = project(data, point_down);
 		draw_line(data, &point_tmp, &point_down);
 	}

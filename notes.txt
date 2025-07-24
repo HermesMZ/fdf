@@ -1,4 +1,0 @@
-clear && valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all --suppressions=./mlx.supp --suppressions=./mlx.supp ./fdf test_maps/10-2.fdf
-
-couleurs pour la profondeur
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 18:06:17 by MZimeris          #+#    #+#             */
-/*   Updated: 2025/07/13 17:27:28 by zoum             ###   ########.fr       */
+/*   Updated: 2025/07/24 15:20:05 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static char	*gnl_clean(char *stash[])
 	}
 	return (NULL);
 }
-
 
 static char	*add_to_stash(char **stash, char *buffer)
 {

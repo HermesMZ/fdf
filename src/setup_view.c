@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 18:12:49 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/23 13:36:37 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/24 16:20:49 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,13 @@ static void	calculate_initial_zoom(t_mlx_data *data, t_bounds *bounds)
 	double	sx;
 	double	sy;
 
-	sx = 0.0;
-	sy = 0.0;
-	while (sx < data->width * 0.9 && sy < data->height * 0.9)
-	{
-		find_projected_minmax(data, bounds);
-		sx = bounds->max_x - bounds->min_x;
-		sy = bounds->max_y - bounds->min_y;
-		data->zoom += 0.01;
-	}
+	find_projected_minmax(data, bounds);
+	sx = bounds->max_x - bounds->min_x;
+	sy = bounds->max_y - bounds->min_y;
+	data->zoom = fmin((data->width * 0.9) / sx, (data->height * 0.9) / sy);
 }
 
-static void	calculate_and_set_offset(t_mlx_data *data, t_bounds *bounds)
+void	calculate_and_set_offset(t_mlx_data *data, t_bounds *bounds)
 {
 	double	center_x;
 	double	center_y;

@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:59:59 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/22 17:51:41 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/24 16:27:14 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,16 @@ static void	_handle_zoom_keys(t_mlx_data *data, int turbo)
 	if (data->keys.depth_in)
 	{
 		if (data->depth < 5.0)
+		{
 			data->depth += 0.001 * turbo;
+		}
 	}
 	if (data->keys.depth_out)
 	{
 		if (data->depth > -5.0)
+		{
 			data->depth -= 0.001 * turbo;
+		}
 	}
 }
 

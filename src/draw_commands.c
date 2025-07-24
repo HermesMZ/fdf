@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 20:44:35 by zoum              #+#    #+#             */
-/*   Updated: 2025/07/23 14:52:29 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/24 12:43:16 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	draw_commands_2(t_mlx_data *data, int x, int y, int line_height)
 	y += line_height;
 	mlx_string_put(data->mlx_ptr, data->win_ptr, x, y, 0xFF0000,
 		"Depth: Q (+) / E (-)");
+	y += line_height;
+	mlx_string_put(data->mlx_ptr, data->win_ptr, x, y, 0xFF0000,
+		"Change views : Z -> V");
 	y += line_height;
 	mlx_string_put(data->mlx_ptr, data->win_ptr, x, y, 0xFF0000,
 		"Colorize : SPACE");
