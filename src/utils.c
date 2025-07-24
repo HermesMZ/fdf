@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:20:24 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/24 12:41:16 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/24 19:10:57 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,20 @@ int	end_display(t_mlx_data *data)
 		free_map(data->map->points);
 		free(data->map);
 	}
-	if (data->img->img)
-		mlx_destroy_image(data->mlx_ptr, data->img->img);
 	if (data->img)
+	{
+		if (data->img->img)
+			mlx_destroy_image(data->mlx_ptr, data->img->img);
 		free(data->img);
-	if (data->win_ptr)
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	}
 	if (data->mlx_ptr)
 	{
+		if (data->win_ptr)
+			mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr);
 	}
-	if (data != NULL)
-		free(data);
+	free(data);
 	exit(0);
 	return (0);
 }

@@ -52,7 +52,7 @@ $(LIBFT):
 
 $(LIBMLX):
 	@echo "Construction de libmlx.a..."
-	@git clone git@github.com:42paris/minilibx-linux.git
+	@git clone https://github.com/42paris/minilibx-linux.git
 	@$(MAKE) -C $(LIBMLX_DIR)	
 
 clean:

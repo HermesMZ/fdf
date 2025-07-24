@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:18:19 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/07/24 15:54:18 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/07/24 19:07:58 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,11 @@ t_mlx_data	*init_data(void)
 	data = malloc(sizeof(t_mlx_data));
 	if (!data)
 		return (NULL);
+	*data = (t_mlx_data){0};
 	data->img = malloc(sizeof(t_my_img));
 	if (!data->img)
 		return (free(data), NULL);
+	*data->img = (t_my_img){0};
 	data->map = malloc(sizeof(t_map));
 	if (!data->map)
 	{
